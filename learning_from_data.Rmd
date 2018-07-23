@@ -1,0 +1,41 @@
+---
+title: "Learning From Data"
+author: g.s.
+date: July 23, 2018
+output:
+  revealjs::revealjs_presentation:
+    incremental: true
+    transition: fade
+    highlight: pygments
+    center: true
+---
+
+# Learning From Data
+
+## Cosal Inference
+
+* Five Habits of Successful People
+
+* Children who play more violent video games are more violent
+
+* I took the medicine and the fever went down
+
+## Correlation
+
+* How far away is a point from the mean?
+	- $(x - \bar{x})$
+
+* How far away from the mean are points on average?
+	- Let's say there are $n$ points
+	- We just care about the distance, not direction
+	- $\frac{\Sigma_1^n (x - \bar{x})^2}{n}$
+
+* Correlation:
+	- We have data on temperatures ($x$) and ice-cream sales ($y$).
+	- For each $x$, calculate how far it is from its mean
+	- For each $y$, caculate how far it is from its mean
+	- How far away is y from its mean?
+	- $(x - \bar{x}) (y - \bar{y})$
+
+## Linear Regression
+
