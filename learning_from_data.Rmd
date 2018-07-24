@@ -15,10 +15,23 @@ output:
 ## Cosal Inference
 
 * Five Habits of Successful People
+	- Adopt these and you will be successful too!
 
-* Children who play more violent video games are more violent
+* More frequent system crashes make people more likely to renew their license for the system.  
 
 * I took the medicine and the fever went down
+
+## Sins
+
+* Selecting on the dependent variable
+
+* Mistaking correlation for causation
+
+* Treating temporally proximate as causal
+
+* Abstract Sins:
+	- Counteractuals
+	- No manipulation
 
 ## Correlation
 
@@ -31,11 +44,22 @@ output:
 	- $\frac{\Sigma_1^n (x - \bar{x})^2}{n}$
 
 * Correlation:
-	- We have data on temperatures ($x$) and ice-cream sales ($y$).
-	- For each $x$, calculate how far it is from its mean
+	- $x$ tracks how hot it is outside and $y$ tracks ice-cream sales
+	- When $x$ is large, is $y$ large too?
+	- When $x$ is 1, is $y$ more likely to be 1 than when $x$ is 0?
+	- As $x$ increases, does $y$ increase too?
+		- Not precise still
+		- On average, when $x$
+
+	For each $x$, calculate how far it is from its mean
 	- For each $y$, caculate how far it is from its mean
-	- How far away is y from its mean?
+	- When How far away is y from its mean?
 	- $(x - \bar{x}) (y - \bar{y})$
 
+	- Linear relation
+		- Anscombe's quarter
+		- More amazing things
+
 ## Linear Regression
+
 
