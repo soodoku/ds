@@ -1,5 +1,5 @@
 ---
-title: "Learning From Data"
+title: "learning from data"
 author: g.s.
 date: July 23, 2018
 output:
@@ -10,14 +10,12 @@ output:
     center: true
 ---
 
-# Learning From Data
-
 ## Cosal Inference
 
 * Five Habits of Successful People
 	- Adopt these and you will be successful too!
 
-* More frequent system crashes make people more likely to renew their license for the system.  
+* More frequent system crashes *cause* people to renew their software license.  
 
 * I took the medicine and the fever went down
 
@@ -31,9 +29,16 @@ output:
 
 * Abstract Sins:
 	- Counteractuals
-	- No manipulation
+	- No caustion without manipulation
+	- Placebos
+	- Deterministic Causation
+	- Effect size
 
-## Correlation
+## Average, Above and Below Average
+
+* What does $mean$ mean?
+
+* Why do we care about it?
 
 * How far away is a point from the mean?
 	- $(x - \bar{x})$
@@ -43,22 +48,43 @@ output:
 	- We just care about the distance, not direction
 	- $\frac{\Sigma_1^n (x - \bar{x})^2}{n}$
 
-* Correlation:
-	- $x$ tracks how hot it is outside and $y$ tracks ice-cream sales
-	- When $x$ is large, is $y$ large too?
-	- When $x$ is 1, is $y$ more likely to be 1 than when $x$ is 0?
-	- As $x$ increases, does $y$ increase too?
-		- Not precise still
-		- On average, when $x$
+## Correlation:
+	
+* $x$ tracks how hot it is outside and $y$ tracks ice-cream sales
+	
+* When $x$ is large, is $y$ large too?
+	- What does that mean?
+	
+* When $x$ is 1, is $y$ more likely to be 1 than when $x$ is 0?
+	
+* As $x$ increases, does $y$ increase too?
+	- Not precise still
+	- On average
 
-	For each $x$, calculate how far it is from its mean
-	- For each $y$, caculate how far it is from its mean
-	- When How far away is y from its mean?
-	- $(x - \bar{x}) (y - \bar{y})$
+* How do you capture that intuition?
+ 
+## Correlation
 
-	- Linear relation
-		- Anscombe's quarter
-		- More amazing things
+* For each $x$, $y$, calculate how far it is from its mean
+
+* Then multiply:
+	- $\Sigma_1^n (x - \bar{x}) (y - \bar{y})$
+
+* Let's try this out. 
+	- 100, 200, 300, 400, 500
+	- 1, 2, 3, 4, 5 
+	- 1000
+		- What do you do with that?
+
+* Normalizing constant
+	- $\sqrt{\Sigma_1^n (x - \bar{x})^2 \Sigma_1^n (y - \bar{y})^2}$
+
+
+## Correlation
+
+- Linear relation
+	- Anscombe's quarter
+	- More amazing things
 
 ## Linear Regression
 

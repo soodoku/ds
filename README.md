@@ -1,2 +1,5 @@
-# ds
-Learning From Data
+# Learning From Data
+
+* Cosal Inference
+* Correlation
+* 
