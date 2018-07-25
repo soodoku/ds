@@ -1,16 +1,23 @@
 ---
 title: "learning from data"
-author: g.s.
-date: July 23, 2018
+author: gaurav sood
+date: July 25, 2018
 output:
   revealjs::revealjs_presentation:
+    theme: simple
     incremental: true
-    transition: fade
-    highlight: pygments
+    transition: slide
+    highlight: haddock
     center: true
+    fig_width: 5
+    fig_height: 4
+    css: reveal.css
+    fig_caption: true
 ---
 
-## Cosal Inference
+# Cosal Inference
+
+## Casual Inference
 
 * Five Habits of Successful People
 	- Adopt these and you will be successful too!
@@ -19,23 +26,25 @@ output:
 
 * I took this homeopathic medication, and my headache went away!
 
-* *Mayor Giuliani* brought the NYC crime rate down.
+* Mayor Giuliani brought the NYC crime rate down.
 
 ## Sins
 
 * Selecting on the dependent variable
-	- Think about counterfactuals
+	- Think about counterfactuals!
 
 * Mistaking correlation for causation
-	- No caustion without manipulation
+	- No causation without manipulation
 
 * Not accounting for placebo effects
 
 * Treating temporally proximate as causal
 
-* Thinking $x$ always causes $y$
+* $x$ always causes $y$
 
 * $x$ causes $y$ to change a lot
+
+# Mean
 
 ## Average, Above Average, Below Average
 
@@ -49,26 +58,28 @@ output:
 
 * How far away from the mean are points on average?
 	- Let's say there are $n$ points
-	- We just care about the distance, not direction
+	- If we just care about the distance, not direction
 	- $\frac{\Sigma_1^n (x - \bar{x})^2}{n}$
 		- Add 2 units to 2, 12 units to 4. Why? 
 
-## Correlation
-	
+# Correlation
+
+## Goes Together
+
 * $x$ tracks how hot it is outside and $y$ tracks ice-cream sales
 	
 * When $x$ is large, is $y$ large too?
 	- What does that mean?
-	
+
 * When $x$ is 1, is $y$ more likely to be 1 than when $x$ is 0?
 	
-* As $x$ increases, does $y$ increase too?
+<p class="fragment current-visible"> As $x$ increases, does $y$ increase too?
 	- Not precise still
 	- On average
-
+</li>
 * How do you capture that intuition?
  
-## Correlation
+## 
 
 * For each $x$, $y$, calculate how far it is from its mean
 
@@ -77,19 +88,22 @@ output:
 
 * Let's try this out. 
 	- 100, 200, 300, 400, 500
-	- 1, 2, 3, 4, 5 
+	- 1, 2, 3, 4, 5
 	- 1000
 		- What do you do with that?
 
 * Normalizing constant
 	- $\sqrt{\Sigma_1^n (x - \bar{x})^2 \Sigma_1^n (y - \bar{y})^2}$
 
+* What if we subtract 100 and 1?
+	- Numerator = 3000
+	- Denominator = 3000
 
-## Correlation
+* Karl Pearson
 
-- Linear relation
-	- Anscombe's quarter
-	- More amazing things
+## Anscombe's Quartet
+
+<img src="anscombe.png" alt="Anscombe" height="600">
 
 ## Linear Regression
 

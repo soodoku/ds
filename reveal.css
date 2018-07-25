@@ -1,0 +1,37 @@
+/* 
+Via Vincent
+*/
+
+<style>
+
+/* Headings */
+
+.reveal h1 { /* Heading 1 */
+	text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); /* shadows */
+	font-weight: bold; /* bold */
+}
+
+.reveal h2.author { /* Heading 2 for an author */
+	font-style: normal;
+}
+
+/* Images */
+
+.reveal section img{ /* images */
+  border: 0px; /* no border but still shadow */
+}
+
+/* Slide content area */
+/* these need to be at the bottom, do NOT move them */
+
+.reveal .slides { /* all slide content */
+  text-align: left; /* left align */
+  font-size: 80%; /* smaller text */
+}
+
+.reveal .slides section>* { /* this is for left align */
+  margin-left: 0;
+  margin-right: 0;
+}
+  
+</style>
