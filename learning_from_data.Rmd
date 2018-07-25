@@ -17,28 +17,32 @@ output:
 
 * More frequent system crashes *cause* people to renew their software license.  
 
-* I took the medicine and the fever went down
+* I took this homeopathic medication, and my headache went away!
+
+* *Mayor Giuliani* brought the NYC crime rate down.
 
 ## Sins
 
 * Selecting on the dependent variable
+	- Think about counterfactuals
 
 * Mistaking correlation for causation
+	- No caustion without manipulation
+
+* Not accounting for placebo effects
 
 * Treating temporally proximate as causal
 
-* Abstract Sins:
-	- Counteractuals
-	- No caustion without manipulation
-	- Placebos
-	- Deterministic Causation
-	- Effect size
+* Thinking $x$ always causes $y$
 
-## Average, Above and Below Average
+* $x$ causes $y$ to change a lot
 
-* What does $mean$ mean?
+## Average, Above Average, Below Average
 
-* Why do we care about it?
+* Why (When) do we care about the mean?
+	- Sorting is $O(n log n)$
+	- When data are symmetrically distributed around it
+	- When lots of points are close to it
 
 * How far away is a point from the mean?
 	- $(x - \bar{x})$
@@ -47,8 +51,9 @@ output:
 	- Let's say there are $n$ points
 	- We just care about the distance, not direction
 	- $\frac{\Sigma_1^n (x - \bar{x})^2}{n}$
+		- Add 2 units to 2, 12 units to 4. Why? 
 
-## Correlation:
+## Correlation
 	
 * $x$ tracks how hot it is outside and $y$ tracks ice-cream sales
 	
