@@ -15,7 +15,7 @@ output:
     fig_caption: true
 ---
 
-# Cosal Inference
+# cosal inference
 
 ## Casual Inference
 
@@ -44,7 +44,7 @@ output:
 
 * $x$ causes $y$ to change a lot
 
-# Mean
+# mean
 
 ## Average, Above Average, Below Average
 
@@ -62,29 +62,46 @@ output:
 	- $\frac{\Sigma_1^n (x - \bar{x})^2}{n}$
 		- Add 2 units to 2, 12 units to 4. Why? 
 
-# Correlation
+# go together
 
-## Goes Together
+## Meaning
 
-* $x$ tracks how hot it is outside and $y$ tracks ice-cream sales
-	
 * When $x$ is large, is $y$ large too?
 	- What does that mean?
 
 * When $x$ is 1, is $y$ more likely to be 1 than when $x$ is 0?
-	
+
 * As $x$ increases, does $y$ increase too?
 	- On average
-	- 
 
 * How do you capture that intuition?
- 
+
+## Intuitions we understand
+
+* When $x$ is above average, $y$ is above average
+	- Dichotomize. Quadrant Count Ratio.
+
+* Proportion of local changes that are in the same direction
+	```{r}
+		x = c(100, 200, 300, 400, 500, 600)
+		y = c(1, 2, 3, 4, 5, -17000)
+		mean(diff(x) > 0 & diff(y) > 0)
+	```
+
+* Average of local changes
+	```{r}
+		x = c(100, 200, 300, 400, 500, 600)
+		y = c(1, 2, 3, 4, 5, -17000)
+		mean(c(1/100, 1/100, 1/100, 1/100, -17001/100))
+	```
+
 ## Correlation 
 
 * For each $x$, $y$, calculate how far it is from its mean
 
 * Then multiply:
 	- $\Sigma_1^n (x - \bar{x}) (y - \bar{y})$
+	- If you are below the mean, I am below the mean, a positive number
 
 * Let's try this out. 
 	- 100, 200, 300, 400, 500
@@ -139,13 +156,25 @@ output:
 	 cor(x, y, method = "spearman")
 	```
 
-## 
-* Karl Pearson
+## Linear Relation
+
+* Let's add a big drop
+	```{r}
+		x = c(100, 200, 300, 400, 500, 600)
+		y = c(1, 2, 3, 4, 5, -17000)
+		cor(x, y)
+	```
+
+* Same order?
+	```{r}
+	 cor(x, y, method = "spearman")
+	```
 
 ## Anscombe's Quartet
 
-<img src="anscombe.png" alt="Anscombe" height="600">
+<img src="anscombe.png" alt="Anscombe, via Wikipedia." height="600">
 
-## Linear Regression
+
+# Linear Regression
 
 
