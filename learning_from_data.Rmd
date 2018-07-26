@@ -73,6 +73,7 @@ output:
 
 * As $x$ increases, does $y$ increase too?
 	- On average
+	- Rank $x$s and $y$s
 
 * How do you capture that intuition?
 
@@ -174,6 +175,11 @@ output:
 
 <img src="anscombe.png" alt="Anscombe, via Wikipedia." height="600">
 
+## Correlation
+
+* Distance correlation
+
+* 
 
 # Linear Regression
 
