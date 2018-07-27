@@ -49,7 +49,7 @@ output:
 ## Average, Above Average, Below Average
 
 * Why (When) do we care about the mean?
-	- Sorting is $O(n log n)$
+	- Sorting is $O(n\,log\,n)$
 	- When data are symmetrically distributed around it
 	- When lots of points are close to it
 
@@ -91,11 +91,10 @@ output:
 * How do you capture that intuition?
 
 * Rank $x$s and $y$s
-	- Spearman --- Diff. in ranks
 	- Kendall --- concordant pairs
+	- Spearman --- Diff. in ranks
  
 ## Intuitions we understand
-
 
 * When $x$ is above average, $y$ is above average
 	- Dichotomize. Quadrant Count Ratio.
@@ -139,6 +138,7 @@ output:
 
 * Normalizing constant
 	- $\sqrt{\Sigma_1^n (x - \bar{x})^2 \Sigma_1^n (y - \bar{y})^2}$
+	- Converting $x$ and $y$ into $z$ scores
 	-  
 		```{r}
 	  	x = sum((seq(100, 500, 100) - 300)^2)

@@ -524,7 +524,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li class="fragment">Why (When) do we care about the mean?
 <ul>
-<li class="fragment">Sorting is <span class="math inline">\(O(n log n)\)</span></li>
+<li class="fragment">Sorting is <span class="math inline">\(O(n\,log\,n)\)</span></li>
 <li class="fragment">When data are symmetrically distributed around it</li>
 <li class="fragment">When lots of points are close to it</li>
 </ul></li>
@@ -572,8 +572,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment"><p>How do you capture that intuition?</p></li>
 <li class="fragment">Rank <span class="math inline">\(x\)</span>s and <span class="math inline">\(y\)</span>s
 <ul>
-<li class="fragment">Spearman — Diff. in ranks</li>
 <li class="fragment">Kendall — concordant pairs</li>
+<li class="fragment">Spearman — Diff. in ranks</li>
 </ul></li>
 </ul>
 </section><section id="intuitions-we-understand" class="slide level2">
@@ -620,6 +620,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">Normalizing constant
 <ul>
 <li class="fragment"><span class="math inline">\(\sqrt{\Sigma_1^n (x - \bar{x})^2 \Sigma_1^n (y - \bar{y})^2}\)</span></li>
+<li class="fragment">Converting <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> into <span class="math inline">\(z\)</span> scores</li>
 <li class="fragment"><div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">        x =<span class="st"> </span><span class="kw">sum</span>((<span class="kw">seq</span>(<span class="dv">100</span>, <span class="dv">500</span>, <span class="dv">100</span>) <span class="op">-</span><span class="st"> </span><span class="dv">300</span>)<span class="op">^</span><span class="dv">2</span>)
         y =<span class="st"> </span><span class="kw">sum</span>((<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">^</span><span class="dv">2</span>)
         <span class="kw">sqrt</span>(x<span class="op">*</span>y)</code></pre></div>
