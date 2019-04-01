@@ -1,9 +1,13 @@
 ## Learning From Data
 
-[Basics of Data Science](https://htmlpreview.github.io/?https://github.com/soodoku/ds/blob/master/learning_from_data.html#/)
+* [Basics of Data Science](ds1/)
 
     * Cosal Inference
     * Mean
     * Correlation
     * Introduction to linear regression
+
+* [Cost](ds3/)
+
+* [Error, Bias, Variance](ds2/)
 

@@ -1,0 +1,99 @@
+---
+title: "cost"
+author: gaurav sood
+date: March 26, 2019
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    incremental: true
+    transition: slide
+    highlight: haddock
+    center: true
+    fig_width: 5
+    fig_height: 4
+    css: reveal.css
+    fig_caption: true
+---
+
+# Cost
+
+## The Cost of Everything
+
+* Loss = Over one training example
+* Cost = Average over all training examples
+* Let's assume we have $m$ training examples
+* MSE:<br>
+  $\frac{1}{m} \Sigma_i (y_i - \hat{y_i})^2$
+* Log Loss:<br>
+  $- \frac{1}{m} \Sigma_i y_i*log(\hat{y_i}) - (1 - y_i)*log(1 - \hat{y_i})$
+
+# The Cost is Too Damn High!  
+
+## When the Slope is 0
+
+* If the costs function is quadratic, set first derivative to 0
+
+* Linear regression:<br>
+	$\hat{y} = \alpha + \beta * x$<br>
+	$\hat{y} = \hat{f}(\alpha + \beta * x)$
+
+* Cost as a function to two parameters $\alpha$ and $\beta$
+
+* Cost:<br>
+  $J = \frac{1}{m} \Sigma_i (y_i - \hat{y_i})^2$
+
+* $\frac{\partial J}{\partial \alpha} = -2 \Sigma_i (y_i - \alpha - \beta*x_i) = 0$
+
+* $m*\alpha = \Sigma_i y_i - \beta \Sigma_i x_i$
+
+* $\alpha = \bar{y} - \beta \bar{x}$
+
+## $\beta$
+
+* $\frac{\partial J}{\partial \beta} = -2 \Sigma_i (y_i - \alpha - \beta*x_i)* x_i = 0$
+
+* $\Sigma_i (y_i*x_i- \alpha*x_i - \beta*x_i^2) = 0$
+
+* $\Sigma_i (y_i*x_i - (\bar{y} - \beta \bar{x})*x_i - \beta*x_i^2) = 0$
+
+* $\Sigma_i (y_i- \bar{y} + \beta \bar{x} - \beta*x_i)*x_i = 0$
+
+* $\Sigma_i (y_i- \bar{y} + \beta (\bar{x} - x_i)) = 0$
+
+* $\Sigma_i (y_i- \bar{y}) = - \beta \Sigma_i (\bar{x} - x_i)$
+
+* $\beta = \frac{\Sigma_i (y_i- \bar{y})}{\Sigma_i (x_i - \bar{x})}$
+
+* $\beta = \frac{\Sigma_i (y_i- \bar{y})(x_i - \bar{x})}{\Sigma_i (x_i - \bar{x})^2}$
+
+* $\beta = \frac{Cov(X, Y)}{Var(X)} = X^{'}X^{-1}X^{'}Y$
+
+## When Change in Costs is *small* or ...
+
+* Optimization algorithms when no exact solutions
+
+* Gradient descent is the most popular:
+
+* $w = w - \alpha * \frac{\partial J}{\partial w}$<br>
+  where $\alpha$ is the learning rate
+
+* Stop updating when reduction in cost is below a certain threshold
+
+* Stop when test error starts going up
+
+* Gradient update:<br>
+  $b = b - \alpha * \frac{\partial J}{\partial b}$
+
+## 101 DL with Log Loss
+
+* $z = w^{t}*x + b$
+
+* $a = \sigma(z)$
+
+* $y*log(a) - (1 - y)*log(1 - a)$
+
+* Chain Rule: $\frac{\partial J}{\partial a} = \frac{\partial J}{\partial k} \frac{\partial k}{\partial a}$
+
+* $\frac{\partial J}{\partial a} = -\frac{y}{a} \frac{1 - y}{1 - a}$
+
+* $\frac{\partial a}{\partial z} = -\frac{y}{a} \frac{1 - y}{1 - a}$

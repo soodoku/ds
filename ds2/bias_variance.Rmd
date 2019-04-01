@@ -1,0 +1,70 @@
+---
+title: "error, bias, & variance"
+author: gaurav sood
+date: July 26, 2018
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    incremental: true
+    transition: slide
+    highlight: haddock
+    center: true
+    fig_width: 5
+    fig_height: 4
+    css: reveal.css
+    fig_caption: true
+---
+
+# Three Facts About Statistics
+
+## Triple Wisdom
+
+* Statistics is the science of *optimally* reducing lots of numbers into fewer numbers
+* Formulas are only right *when* assumptions hold.
+* All distance metrics are arbitrary. But supervision provides a way to *optimally* scale distances.
+ 
+# Estimating Functions
+
+## Functional Estimation
+
+* Functions map each $x$ to one $y$
+
+* But with data with generally have two issues:
+	- multiple $y$s with the same $x$
+	- $y$ in sparse corners
+
+* Most of ML $\sim$ Functional Estimation
+
+* $y = f(x) + \epsilon$ 
+
+* $\epsilon \sim N(0, \sigma^2)$
+
+* $\epsilon$ also called the irreducible error
+
+* $Error  = (y - \hat{f}(x))^2$
+
+## Bias, Variance, and Error
+
+* $Bias = E[\hat{f}(x) - f(x)]$
+
+* $Variance = E[\hat{f}(x)^2] - (E[\hat{f}(x)])^2$
+
+* $Error  = E[(y - \hat{f}(x))^2]$
+
+* $E[(f(x)  + \epsilon - \hat{f}(x))^2]$
+
+* $E[f(x) + \epsilon + E[\hat{f}(x)] - E[\hat{f}(x)] - \hat{f}(x))^2]$
+
+* $(a + b + c)^2 = a^2 + b^2 + c^2 - 2ab - 2ac - 2bc$
+
+* Expectation of sums is sum of expectations
+
+* $E[(f(x) - E[\hat{f}(x)])^2] + E[\epsilon^2] + E[(E[\hat{f}(x)] - \hat{f}(x))^2] + \\
+  2*E[(f(x) - E[\hat{f}(x)])]*E(\epsilon) + 2*E[(E[\hat{f}(x)] - \hat{f}(x))]*E[\epsilon] + \\
+  2*E[(f(x) - E[\hat{f}(x)])]*E[(E[\hat{f}(x)] - \hat{f}(x))]$
+
+## Continued ...
+
+* $Bias^2 + Var(y) + Variance$
+
+* $Bias^2 + \sigma^2 + Variance$
