@@ -1,12 +1,21 @@
 ## Learning From Data
 
 * [Basics of Data Science](ds1/)
+    - *Cosal* Inference
+    - When is the *mean* useful?
+    - Correlation---intuition and problems
+    - Introduction to linear regression
 
-    * Cosal Inference
-    * Mean
-    * Correlation
-    * Introduction to linear regression
+* [Cost](ds2/)
+    - Functional Estimation as Cost Minimization
+    - What's the cost?
+    - How to minimize costs
+    - Derivation of simple linear regression
 
-* [Cost](ds3/)
+* [Error, Bias, Variance](ds3/)
+    - Decomposing Error in Bias, Variance, Irreducible Error
+    - Practical Trade-offs between Bias and Variance
 
-* [Error, Bias, Variance](ds2/)
+### Author
+
+Gaurav Sood
