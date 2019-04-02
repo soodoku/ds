@@ -10,4 +10,3 @@
 * [Cost](ds3/)
 
 * [Error, Bias, Variance](ds2/)
-

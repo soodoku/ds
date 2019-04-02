@@ -1,7 +1,6 @@
 ---
 title: "cost"
 author: gaurav sood
-date: March 26, 2019
 output:
   revealjs::revealjs_presentation:
     theme: simple
@@ -14,6 +13,34 @@ output:
     css: reveal.css
     fig_caption: true
 ---
+
+# Three Facts About Statistics
+
+## Triple Wisdom
+
+* Statistics is the science of *optimally* reducing lots of numbers into fewer numbers
+* Formulas are only right *when* assumptions hold.
+* All distance metrics are arbitrary. But supervision provides a way to *optimally* scale distances.
+ 
+# Estimating Functions
+
+## Functional Estimation
+
+* Functions map each $x$ to one $y$
+
+* But with data with generally have two issues:
+  - multiple $y$s with the same $x$
+  - $y$ in sparse corners---no close neighbors
+
+* Most of ML $\sim$ Functional Estimation
+
+* $y = f(x) + \epsilon$ 
+
+* $\epsilon \sim N(0, \sigma^2)$
+
+* $\epsilon$ also called the irreducible error
+
+* $Cost  = (y - \hat{f}(x))^2$
 
 # Cost
 
@@ -83,17 +110,3 @@ output:
 
 * Gradient update:<br>
   $b = b - \alpha * \frac{\partial J}{\partial b}$
-
-## 101 DL with Log Loss
-
-* $z = w^{t}*x + b$
-
-* $a = \sigma(z)$
-
-* $y*log(a) - (1 - y)*log(1 - a)$
-
-* Chain Rule: $\frac{\partial J}{\partial a} = \frac{\partial J}{\partial k} \frac{\partial k}{\partial a}$
-
-* $\frac{\partial J}{\partial a} = -\frac{y}{a} \frac{1 - y}{1 - a}$
-
-* $\frac{\partial a}{\partial z} = -\frac{y}{a} \frac{1 - y}{1 - a}$
