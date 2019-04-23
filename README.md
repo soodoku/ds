@@ -1,7 +1,6 @@
 ## Learning From Data
 
 * [Basics of Data Science](ds1/)
-    - *Cosal* Inference
     - When is the *mean* useful?
     - Correlation---intuition and problems
     - Introduction to linear regression
@@ -15,6 +14,11 @@
 * [Error, Bias, Variance](ds3/)
     - Decomposing Error in Bias, Variance, Irreducible Error
     - Practical Trade-offs between Bias and Variance
+
+* [Causal Inference](ds4/)
+    - *Cosal* Inference
+    - Experimental Inference
+    - Power
 
 ### Author
 

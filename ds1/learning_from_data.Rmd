@@ -15,35 +15,6 @@ output:
     fig_caption: true
 ---
 
-# cosal inference
-
-## Casual Inference
-
-* Five Habits of Successful People
-	- Adopt these and you will be successful too!
-
-* More frequent system crashes *cause* people to renew their software license.  
-
-* I took this homeopathic medication and my headache went away!
-
-* Mayor Giuliani brought the NYC crime rate down.
-
-## Sins
-
-* Selecting on the dependent variable
-	- Think about counterfactuals!
-
-* Mistaking correlation for causation
-	- No causation without manipulation
-
-* Not accounting for placebo effects
-
-* Treating temporally proximate as causal
-
-* In everyday conversation, people frequently make two other errors:
-	- $x$ always causes $y$
-	- $x$ causes $y$ to change a lot
-
 # mean
 
 ## Average, Above Average, Below Average

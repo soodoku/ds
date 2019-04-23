@@ -1,0 +1,129 @@
+---
+title: "causal inference, randomized inference, power"
+author: gaurav sood
+date: April 19, 2019
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    incremental: true
+    transition: slide
+    highlight: haddock
+    center: true
+    fig_width: 5
+    fig_height: 4
+    css: reveal.css
+    fig_caption: true
+---
+
+# cosal inference
+
+## Casual Inference
+
+* Five Habits of Successful People
+  - Adopt these and you will be successful too!
+
+* More frequent system crashes *cause* people to renew their software license.  
+
+* I took this homeopathic medication and my headache went away!
+
+* Mayor Giuliani brought the NYC crime rate down.
+
+## Sins
+
+* Selecting on the dependent variable
+  - Think about counterfactuals!
+
+* Mistaking correlation for causation
+  - No causation without manipulation
+
+* Not accounting for placebo effects
+
+* Treating temporally proximate as causal
+
+* In everyday conversation, people frequently make two other errors:
+  - $x$ always causes $y$
+  - $x$ causes $y$ to change a lot
+
+# Randomized Inference
+
+## How?
+
+## Two Common Errors in Experiment Design
+
+1. Optimistic Estimates of Effect Sizes
+
+2. Wasted $n$
+
+# Power
+
+## Standard Error
+
+* $s.e. = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}$
+* $s.e. \sim f(\hat{p}, n)$
+* For a particular $n$, largest s.e. for $p = .5$
+* If you want a s.e. no larger than $x$, how large should $n$ be for a particular $\alpha$ or a False Positive Rate?
+
+* |                           | $H_0$ is true   | $H_0$ is false  |
+  |-------------------------  |---------------  |---------------- |
+  | **Reject $H_0$**          | FP ($\alpha$)   | Correct         |
+  | **Do Not Reject $H_0$**   | Correct         | FN  ($\beta$)   |
+
+* False Positive: $\alpha = .05$ and $1.96*s.e.$
+* Power = $1 - \beta$ or the probability of not rejecting a null hypothesis when it is false.
+
+## Standard Error of Diff. in Proportions
+
+* Let $X$ and $Y$ be number of successes in group 1 and 2 respectively.
+* Let $\hat{p} = \frac{X + Y}{n_1 + n_2}$
+* $s.e. = \frac{\hat{p_1} - \hat{p_2}}{\sqrt{\hat{p} (1 - \hat{p}) (\frac{1}{n_1} + \frac{1}{n_2})}}$<br />
+* Wald intervals don't work well.
+* Agresti--Caffo intervals are better. <br />
+  They use: $\tilde{n_1} = n_1 + 2, \tilde{p_1} = \frac{X + 1}{n_1 + 2}$ (same for $n_2$ and $p_2$)
+
+## I Have the Power!
+
+* Conventionally, studies seen as reasonably powered if $\beta >= .8$
+
+* Let's think carefully about effect sizes.<br />
+> If you send an email to encourage me to use a new product, <br />
+  and measure success as proportion of people who follow-up on that, how many people do you think would follow-up? 
+
+* Here's how to think: Imagine a funnel:  
+    1. Assume that people must read the email for the email to have an effect.
+    2. How many people will receive the email? Say **99\%.**
+    3. How many people who receive will open the email? Say **5\%** of the **99\%.**
+    4. How many people who open an email will read the email? Say **70\%** of the **5\%.**
+    5. How many people who read an email will follow-up? Say **10\%.**
+    6. Expected Number of **conversions** = $n*.99*.05*.70*.10$
+    7. Expected effect size, compared to some low number = **.35\%**. We can make it **.5\%.** 
+
+## Power and Sizing
+
+* Quantile Function: $Pr (X \leq x) = p$
+
+* Rejection Region Using the Quantile Function
+
+```
+qbinom(p = 0.05, size = 100, prob = 0.3)
+```
+
+```
+p1 = .05
+p2 = .055
+se = (.05)*(/sqrt(25)
+a = 3.35 - 1.96 * se
+b = 3.35 + 1.96 * se
+c(a, b)
+power = pnorm(a, 3.3, se) + (1 - pnorm(b, 3.3, se))
+```
+
+* $\beta = .8, \alpha = .05, \hat{p_1} = .005, \hat{p_2} = 0$
+* $0 < .005 - 1.96*\frac{.005*.995}{\sqrt{n}}%
+* 
+
+## Can We Do Better? --- Yes
+
+1. Experiments Without Control <br />
+   Give bananas to A and apples to B if you can assume that encouraging people to eat bananas doesn't cause them to eat more apples and vice-versa.
+
+2. Optimal Stopping
