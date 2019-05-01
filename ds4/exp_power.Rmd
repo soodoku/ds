@@ -48,6 +48,45 @@ output:
 
 ## How?
 
+* No causation without manipulation (Holland, 1986)
+  - Otherwise why would the same people be exposed to different things?
+  - Exploit luck or manufacture luck (intervene)
+  - Prediction is predicting $Y$ after *observing* $X = x$. 
+  - Causation is predicting $Y$ after *setting* $X = x$.
+ 
+* Comparing Groups
+  - $E[Y_i| D_i = 1] - E[Y_i|D_i = 0]$
+  - $E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]$
+  - $E[Y_i(1)| D_i = 1) - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - $E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - Naive = ATT + Selection Bias
+
+## Continued ...
+
+* | D    | $Y_0$ | $Y_1$ |
+  |------|-------|-------|
+  | 1    |   *   |  1    |
+  | 1    |   *   |  0    |
+  | 1    |   *   |  1    |
+  | 0    |   1   |  *    |
+  | 0    |   1   |  *    |
+  | 0    |   0   |  *    |
+
+* Fundamental Problem of Causation
+
+* Experiment:
+  - Unconfounded: $P[D_i = 1|Y_i(0), Y_i(1)] = P[D_i = 1]$
+  - Assignment doesn't depend on potential outcomes
+
+* $E[Y_i|D_i = 0] = E[Y_i (0)|D_i = 0] = E[Y_i(0)] = E[Y_i(0)| D_i = 1]$
+
+* Randomization nukes selection bias:
+  - $E[Y_i(1)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - $ = E[Y_i(1)] - E[Y_i(0)]$ because of unconfoundedness
+
+* Leaves:
+  - $E[Y_i(1)|D_i = 1] - E[Y_i(0)| D_i = 1]$
+
 ## Two Common Errors in Experiment Design
 
 1. Optimistic Estimates of Effect Sizes
@@ -127,3 +166,27 @@ power = pnorm(a, 3.3, se) + (1 - pnorm(b, 3.3, se))
    Give bananas to A and apples to B if you can assume that encouraging people to eat bananas doesn't cause them to eat more apples and vice-versa.
 
 2. Optimal Stopping
+
+# Opportunities and Issues
+
+## Data Generating Process
+  * SUTVA
+
+## Decision Making:
+  * Quantiles
+  * Bayesian
+  * Trade-offs
+  * Multiple Comparisons:
+    - Bonferroni Correction (Boole's inequality): $P (T_i passes | H_0) \leq \frac{\alpha}{n}$
+    - Assumes independence of outcomes
+    - [Netflix](https://medium.com/netflix-techblog/streaming-video-experimentation-at-netflix-visualizing-practical-and-statistical-significance-7117420f4e9a)
+    - [WB](http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-a-quick-adjustment-for-multiple-hypothesis-testing)
+
+## Efficient Experimentation:
+  * $k$-arm bandits
+  * Optimal Stopping
+
+## Observational Inference:
+  * DID
+  * IV
+  * Double ML

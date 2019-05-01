@@ -1807,6 +1807,84 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section></section>
 <section><section id="randomized-inference" class="title-slide slide level1"><h1>Randomized Inference</h1></section><section id="how" class="slide level2">
 <h2>How?</h2>
+<ul>
+<li class="fragment">No causation without manipulation (Holland, 1986)
+<ul>
+<li class="fragment">Otherwise why would the same people be exposed to different things?</li>
+<li class="fragment">Exploit luck or manufacture luck (intervene)</li>
+<li class="fragment">Prediction is predicting <span class="math inline">\(Y\)</span> after <em>observing</em> <span class="math inline">\(X = x\)</span>.</li>
+<li class="fragment">Causation is predicting <span class="math inline">\(Y\)</span> after <em>setting</em> <span class="math inline">\(X = x\)</span>.</li>
+</ul></li>
+<li class="fragment">Comparing Groups
+<ul>
+<li class="fragment"><span class="math inline">\(E[Y_i| D_i = 1] - E[Y_i|D_i = 0]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1) - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
+<li class="fragment">Naive = ATT + Selection Bias</li>
+</ul></li>
+</ul>
+</section><section id="continued" class="slide level2">
+<h2>Continued …</h2>
+<ul>
+<li class="fragment"><table>
+<thead>
+<tr class="header">
+<th>D</th>
+<th><span class="math inline">\(Y_0\)</span></th>
+<th><span class="math inline">\(Y_1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>*</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>*</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>*</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>*</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>*</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>*</td>
+</tr>
+</tbody>
+</table></li>
+<li class="fragment"><p>Fundamental Problem of Causation</p></li>
+<li class="fragment">Experiment:
+<ul>
+<li class="fragment">Unconfounded: <span class="math inline">\(P[D_i = 1|Y_i(0), Y_i(1)] = P[D_i = 1]\)</span></li>
+<li class="fragment">Assignment doesn’t depend on potential outcomes</li>
+</ul></li>
+<li class="fragment"><p><span class="math inline">\(E[Y_i|D_i = 0] = E[Y_i (0)|D_i = 0] = E[Y_i(0)] = E[Y_i(0)| D_i = 1]\)</span></p></li>
+<li class="fragment">Randomization nukes selection bias:
+<ul>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
+<li class="fragment">$ = E[Y_i(1)] - E[Y_i(0)]$ because of unconfoundedness</li>
+</ul></li>
+<li class="fragment">Leaves:
+<ul>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)|D_i = 1] - E[Y_i(0)| D_i = 1]\)</span></li>
+</ul></li>
+</ul>
 </section><section id="two-common-errors-in-experiment-design" class="slide level2">
 <h2>Two Common Errors in Experiment Design</h2>
 <ol type="1">
@@ -1895,6 +1973,39 @@ power = pnorm(a, 3.3, se) + (1 - pnorm(b, 3.3, se))</code></pre>
 <li class="fragment"><p>Experiments Without Control <br /> Give bananas to A and apples to B if you can assume that encouraging people to eat bananas doesn’t cause them to eat more apples and vice-versa.</p></li>
 <li class="fragment"><p>Optimal Stopping</p></li>
 </ol>
+</section></section>
+<section><section id="opportunities-and-issues" class="title-slide slide level1"><h1>Opportunities and Issues</h1></section><section id="data-generating-process" class="slide level2">
+<h2>Data Generating Process</h2>
+<ul>
+<li class="fragment">SUTVA</li>
+</ul>
+</section><section id="decision-making" class="slide level2">
+<h2>Decision Making:</h2>
+<ul>
+<li class="fragment">Quantiles</li>
+<li class="fragment">Bayesian</li>
+<li class="fragment">Trade-offs</li>
+<li class="fragment">Multiple Comparisons:
+<ul>
+<li class="fragment">Bonferroni Correction (Boole’s inequality): <span class="math inline">\(P (T_i passes | H_0) \leq \frac{\alpha}{n}\)</span></li>
+<li class="fragment">Assumes independence of outcomes</li>
+<li class="fragment"><a href="https://medium.com/netflix-techblog/streaming-video-experimentation-at-netflix-visualizing-practical-and-statistical-significance-7117420f4e9a">Netflix</a></li>
+<li class="fragment"><a href="http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-a-quick-adjustment-for-multiple-hypothesis-testing">WB</a></li>
+</ul></li>
+</ul>
+</section><section id="efficient-experimentation" class="slide level2">
+<h2>Efficient Experimentation:</h2>
+<ul>
+<li class="fragment"><span class="math inline">\(k\)</span>-arm bandits</li>
+<li class="fragment">Optimal Stopping</li>
+</ul>
+</section><section id="observational-inference" class="slide level2">
+<h2>Observational Inference:</h2>
+<ul>
+<li class="fragment">DID</li>
+<li class="fragment">IV</li>
+<li class="fragment">Double ML</li>
+</ul>
 </section></section>
     </div>
   </div>
