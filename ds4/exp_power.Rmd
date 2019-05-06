@@ -174,12 +174,12 @@ power = pnorm(a, 3.3, se) + (1 - pnorm(b, 3.3, se))
 
 ## Decision Making:
   * Quantiles
+    - [Netflix](https://medium.com/netflix-techblog/streaming-video-experimentation-at-netflix-visualizing-practical-and-statistical-significance-7117420f4e9a)
   * Bayesian
   * Trade-offs
   * Multiple Comparisons:
     - Bonferroni Correction (Boole's inequality): $P (T_i passes | H_0) \leq \frac{\alpha}{n}$
     - Assumes independence of outcomes
-    - [Netflix](https://medium.com/netflix-techblog/streaming-video-experimentation-at-netflix-visualizing-practical-and-statistical-significance-7117420f4e9a)
     - [WB](http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-a-quick-adjustment-for-multiple-hypothesis-testing)
 
 ## Efficient Experimentation:
