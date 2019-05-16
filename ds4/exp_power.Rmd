@@ -22,9 +22,9 @@ output:
 * Five Habits of Successful People
   - Adopt these and you will be successful too!
 
-* More frequent system crashes *cause* people to renew their software license.  
+* More frequent system crashes *cause* people to renew their software license.
 
-* I took this homeopathic medication and my headache went away!
+* I took this homeopathic medication and my headache went away.
 
 * Mayor Giuliani brought the NYC crime rate down.
 
@@ -43,18 +43,29 @@ output:
 * In everyday conversation, people frequently make two other errors:
   - $x$ always causes $y$
   - $x$ causes $y$ to change a lot
+  - the effect is the same across people
 
 # Randomized Inference
+
+## Limits of Observational Inference
+
+* `Control` for things but:
+  - Omitted variables
+  - Endogenous variables
+  - Incorrect functional form
+  - Heterogenous treatment effects
 
 ## How?
 
 * No causation without manipulation (Holland, 1986)
   - Otherwise why would the same people be exposed to different things?
   - Exploit luck or manufacture luck (intervene)
-  - Prediction is predicting $Y$ after *observing* $X = x$. 
+  - Prediction is predicting $Y$ after *observing* $X = x$.
   - Causation is predicting $Y$ after *setting* $X = x$.
- 
+
 * Comparing Groups
+  - Notation:
+    -
   - $E[Y_i| D_i = 1] - E[Y_i|D_i = 0]$
   - $E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]$
   - $E[Y_i(1)| D_i = 1) - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
@@ -125,16 +136,16 @@ output:
 
 * Let's think carefully about effect sizes.<br />
 > If you send an email to encourage me to use a new product, <br />
-  and measure success as proportion of people who follow-up on that, how many people do you think would follow-up? 
+  and measure success as proportion of people who follow-up on that, how many people do you think would follow-up?
 
-* Here's how to think: Imagine a funnel:  
+* Here's how to think: Imagine a funnel:
     1. Assume that people must read the email for the email to have an effect.
     2. How many people will receive the email? Say **99\%.**
     3. How many people who receive will open the email? Say **5\%** of the **99\%.**
     4. How many people who open an email will read the email? Say **70\%** of the **5\%.**
     5. How many people who read an email will follow-up? Say **10\%.**
     6. Expected Number of **conversions** = $n*.99*.05*.70*.10$
-    7. Expected effect size, compared to some low number = **.35\%**. We can make it **.5\%.** 
+    7. Expected effect size, compared to some low number = **.35\%**. We can make it **.5\%.**
 
 ## Power and Sizing
 
@@ -158,7 +169,7 @@ power = pnorm(a, 3.3, se) + (1 - pnorm(b, 3.3, se))
 
 * $\beta = .8, \alpha = .05, \hat{p_1} = .005, \hat{p_2} = 0$
 * $0 < .005 - 1.96*\frac{.005*.995}{\sqrt{n}}%
-* 
+*
 
 ## Can We Do Better? --- Yes
 
