@@ -42,9 +42,21 @@ output:
 
 * Square root of sum of squares and absolute values
 
-	```{r}
+	
+	```r
 		sqrt(sum((seq(1, 5, 1) - 3)^2)/5)
+	```
+	
+	```
+	## [1] 1.414214
+	```
+	
+	```r
 		sum(abs(seq(1, 5, 1) - 3)/5)
+	```
+	
+	```
+	## [1] 1.2
 	```
 
 # go together
@@ -71,17 +83,27 @@ output:
 	- Dichotomize. Quadrant Count Ratio.
 
 * Proportion of local changes that are in the same direction
-	```{r}
+	
+	```r
 		x = c(100, 200, 300, 400, 500, 600)
 		y = c(1, 2, 3, 4, 5, -17000)
 		mean(diff(x) > 0 & diff(y) > 0)
 	```
+	
+	```
+	## [1] 0.8
+	```
 
 * Average of local changes
-	```{r}
+	
+	```r
 		x = c(100, 200, 300, 400, 500, 600)
 		y = c(1, 2, 3, 4, 5, -17000)
 		mean(c(1/100, 1/100, 1/100, 1/100, -17001/100))
+	```
+	
+	```
+	## [1] -33.994
 	```
 
 ## Correlation 
@@ -97,10 +119,15 @@ output:
 	- 1, 2, 3, 4, 5
 
 *	
-	```{r}
+	
+	```r
 	  x = seq(100, 500, 100) - 300
-      y = seq(1, 5, 1) - 3
-      sum(x*y)
+	      y = seq(1, 5, 1) - 3
+	      sum(x*y)
+	```
+	
+	```
+	## [1] 1000
 	```
 
 * What do you do with that?
@@ -111,53 +138,95 @@ output:
 	- $\sqrt{\Sigma_1^n (x - \bar{x})^2 \Sigma_1^n (y - \bar{y})^2}$
 	- Converting $x$ and $y$ into $z$ scores
 	-  
-		```{r}
-	  	x = sum((seq(100, 500, 100) - 300)^2)
-      	y = sum((seq(1, 5, 1) - 3)^2)
-      	sqrt(x*y)
+		
+		```r
+			  	x = sum((seq(100, 500, 100) - 300)^2)
+		      	y = sum((seq(1, 5, 1) - 3)^2)
+		      	sqrt(x*y)
+		```
+		
+		```
+		## [1] 1000
 		```
 
 * What if we subtract 100 and 1?
 
-	```{r}
+	
+	```r
 	  x = seq(100, 500, 100) - 100
-      y = seq(1, 5, 1) - 1
-      sum(x*y)
+	      y = seq(1, 5, 1) - 1
+	      sum(x*y)
+	```
+	
+	```
+	## [1] 3000
 	```
 
-	```{r}
+	
+	```r
 	  	x = sum((seq(100, 500, 100) - 100)^2)
-      	y = sum((seq(1, 5, 1) - 1)^2)
-      	sqrt(x*y)
+	      	y = sum((seq(1, 5, 1) - 1)^2)
+	      	sqrt(x*y)
+	```
+	
+	```
+	## [1] 3000
 	```
 
 ## Linear Relation
 
 * Let's add a big jump
-	```{r}
+	
+	```r
 		x = c(100, 200, 300, 400, 500, 600)
 		y = c(1, 2, 3, 4, 5, 17000)
 		cor(x[1:5], y[1:5])
+	```
+	
+	```
+	## [1] 1
+	```
+	
+	```r
 		cor(x, y)
+	```
+	
+	```
+	## [1] 0.6548077
 	```
 
 * Same order?
-	```{r}
+	
+	```r
 	 cor(x, y, method = "spearman")
+	```
+	
+	```
+	## [1] 1
 	```
 
 ## Linear Relation
 
 * Let's add a big drop
-	```{r}
+	
+	```r
 		x = c(100, 200, 300, 400, 500, 600)
 		y = c(1, 2, 3, 4, 5, -17000)
 		cor(x, y)
 	```
+	
+	```
+	## [1] -0.6544996
+	```
 
 * Same order?
-	```{r}
+	
+	```r
 	 cor(x, y, method = "spearman")
+	```
+	
+	```
+	## [1] 0.1428571
 	```
 
 ## Anscombe's Quartet
