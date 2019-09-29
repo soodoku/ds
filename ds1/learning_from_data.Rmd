@@ -25,18 +25,24 @@ output:
 
 * Why do we care about the mean?
 	- Because sorting is $O(n\,log\,n)$?
+	- Tells us something useful?
 
-* When do we care about the mean?
+* But when does it tell us something useful?
 	- When data are symmetrically distributed around it
 	- When lots of points are close to it
 	- When you show people the mean, that is what they picture
 
-* But if the assumptions don't hold
+* If the assumptions don't hold
 	- We misinform people
 
 * The fixes are obvious
-	- show a different number, e.g., median
+	- Show a different number, e.g., median
 	- Or, perhaps, one number is not enough. Show different percentiles?
+
+## Lesson
+
+* Formulas tell us something useful to the extent the assumptions hold
+* Know the assumptions are behind the formulas.
 
 ## Far From the Mean
 
@@ -45,27 +51,26 @@ output:
 
 * How far away from the mean are points on average?
 	- Let's say there are $n$ points
-	- If we just care about the distance, not direction
+	- $\frac{\Sigma_1^n (x - \bar{x})}{n}$
+	- Tells us about symmetry but not always proximity
+
+* For average proximity, one common cure is to square each number 
 	- $\frac{\Sigma_1^n (x - \bar{x})^2}{n}$
 
 * But why squares?
 	- Add 2 units to 2, 12 units to 4. Why?
 
+## 	
+
 * Ok. We will take a square root.
 	- $\sqrt{\frac{\Sigma_1^n (x - \bar{x})^2}{n}}$
 
-* Square root of sum of squares and average of absolute values is not the same
+* Square root of the sum of squares and the average of absolute values is not the same
 
 	```{r}
 		sqrt(sum((seq(1, 5, 1) - 3)^2)/5)
 		sum(abs(seq(1, 5, 1) - 3)/5)
 	```
-
-## Lessons
-
-* Think carefully about what distillation is the most appropriate
-* Know what the assumptions are behind the formulas.
-* 
 
 # go together
 

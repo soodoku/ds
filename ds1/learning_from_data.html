@@ -1834,12 +1834,10 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <h3 class="date">September 29, 2019</h3>
 </section>
 
-<section id="statistics" class="slide level2">
-<h2>Statistics</h2>
+<section id="what-is-statistics-about" class="slide level2">
+<h2>What is Statistics About?</h2>
 <ul>
-<li class="fragment">What is it?</li>
 <li class="fragment">It is the science of distilling a lot of numbers into a few numbers.</li>
-<li class="fragment">The most common distillate is the <strong>mean</strong>.</li>
 </ul>
 </section>
 <section><section id="mean" class="title-slide slide level1"><h1>mean</h1></section><section id="just-average" class="slide level2">
@@ -1848,22 +1846,29 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">Why do we care about the mean?
 <ul>
 <li class="fragment">Because sorting is <span class="math inline">\(O(n\,log\,n)\)</span>?</li>
+<li class="fragment">Tells us something useful?</li>
 </ul></li>
-<li class="fragment">When do we care about the mean?
+<li class="fragment">But when does it tell us something useful?
 <ul>
 <li class="fragment">When data are symmetrically distributed around it</li>
 <li class="fragment">When lots of points are close to it</li>
 <li class="fragment">When you show people the mean, that is what they picture</li>
 </ul></li>
-<li class="fragment">But if the assumptions don’t hold
+<li class="fragment">If the assumptions don’t hold
 <ul>
 <li class="fragment">We misinform people</li>
 </ul></li>
 <li class="fragment">The fixes are obvious
 <ul>
-<li class="fragment">show a different number, e.g., median</li>
+<li class="fragment">Show a different number, e.g., median</li>
 <li class="fragment">Or, perhaps, one number is not enough. Show different percentiles?</li>
 </ul></li>
+</ul>
+</section><section id="lesson" class="slide level2">
+<h2>Lesson</h2>
+<ul>
+<li class="fragment">Formulas tell us something useful to the extent the assumptions hold</li>
+<li class="fragment">Know the assumptions are behind the formulas.</li>
 </ul>
 </section><section id="far-from-the-mean" class="slide level2">
 <h2>Far From the Mean</h2>
@@ -1875,29 +1880,30 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">How far away from the mean are points on average?
 <ul>
 <li class="fragment">Let’s say there are <span class="math inline">\(n\)</span> points</li>
-<li class="fragment">If we just care about the distance, not direction</li>
+<li class="fragment"><span class="math inline">\(\frac{\Sigma_1^n (x - \bar{x})}{n}\)</span></li>
+<li class="fragment">Tells us about symmetry but not always proximity</li>
+</ul></li>
+<li class="fragment">For average proximity, one common cure is to square each number
+<ul>
 <li class="fragment"><span class="math inline">\(\frac{\Sigma_1^n (x - \bar{x})^2}{n}\)</span></li>
 </ul></li>
 <li class="fragment">But why squares?
 <ul>
 <li class="fragment">Add 2 units to 2, 12 units to 4. Why?</li>
 </ul></li>
+</ul>
+</section><section id="section" class="slide level2">
+<h2></h2>
+<ul>
 <li class="fragment">Ok. We will take a square root.
 <ul>
 <li class="fragment"><span class="math inline">\(\sqrt{\frac{\Sigma_1^n (x - \bar{x})^2}{n}}\)</span></li>
 </ul></li>
-<li class="fragment"><p>Square root of sum of squares and average of absolute values is not the same</p>
+<li class="fragment"><p>Square root of the sum of squares and the average of absolute values is not the same</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">    <span class="kw">sqrt</span>(<span class="kw">sum</span>((<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 1.414214</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">    <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">/</span><span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 1.2</code></pre></li>
-</ul>
-</section><section id="lessons" class="slide level2">
-<h2>Lessons</h2>
-<ul>
-<li class="fragment">Think carefully about what distillation is the most appropriate</li>
-<li class="fragment">Know what the assumptions are behind the formulas.</li>
-<li class="fragment"></li>
 </ul>
 </section></section>
 <section><section id="go-together" class="title-slide slide level1"><h1>go together</h1></section><section id="meaning" class="slide level2">
