@@ -1834,10 +1834,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <h3 class="date">September 29, 2019</h3>
 </section>
 
-<section id="what-is-statistics-about" class="slide level2">
-<h2>What is Statistics About?</h2>
+<section id="statistics-is-the-science-of-ldots" class="slide level2">
+<h2>Statistics is the science of <span class="math inline">\(\ldots\)</span></h2>
+<p><br></p>
 <ul>
-<li class="fragment">It is the science of distilling a lot of numbers into a few numbers.</li>
+<li class="fragment">distilling a lot of numbers into a few numbers.</li>
 </ul>
 </section>
 <section><section id="mean" class="title-slide slide level1"><h1>mean</h1></section><section id="just-average" class="slide level2">
@@ -1852,8 +1853,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li class="fragment">When data are symmetrically distributed around it</li>
 <li class="fragment">When lots of points are close to it</li>
-<li class="fragment">When you show people the mean, that is what they picture</li>
 </ul></li>
+<li class="fragment"><p>When you show people the mean, that is what they picture</p></li>
 <li class="fragment">If the assumptions don’t hold
 <ul>
 <li class="fragment">We misinform people</li>
@@ -1868,7 +1869,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2>Lesson</h2>
 <ul>
 <li class="fragment">Formulas tell us something useful to the extent the assumptions hold</li>
-<li class="fragment">Know the assumptions are behind the formulas.</li>
+<li class="fragment">Know the assumptions behind the formulas.</li>
 </ul>
 </section><section id="far-from-the-mean" class="slide level2">
 <h2>Far From the Mean</h2>
@@ -1883,7 +1884,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment"><span class="math inline">\(\frac{\Sigma_1^n (x - \bar{x})}{n}\)</span></li>
 <li class="fragment">Tells us about symmetry but not always proximity</li>
 </ul></li>
-<li class="fragment">For average proximity, one common cure is to square each number
+<li class="fragment">To calculate average proximity, one common cure is to square each number
 <ul>
 <li class="fragment"><span class="math inline">\(\frac{\Sigma_1^n (x - \bar{x})^2}{n}\)</span></li>
 </ul></li>
@@ -1899,7 +1900,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li class="fragment"><span class="math inline">\(\sqrt{\frac{\Sigma_1^n (x - \bar{x})^2}{n}}\)</span></li>
 </ul></li>
-<li class="fragment"><p>Square root of the sum of squares and the average of absolute values is not the same</p>
+<li class="fragment"><p>But the square root of the sum of squares is not the same as the average absolute value</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">    <span class="kw">sqrt</span>(<span class="kw">sum</span>((<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 1.414214</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">    <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">/</span><span class="dv">5</span>)</a></code></pre></div>
