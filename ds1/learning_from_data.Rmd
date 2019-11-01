@@ -79,23 +79,17 @@ output:
 ## Meaning
 
 * When $x$ is large, is $y$ large too?
-	- What does that mean?
 
 * When $x$ is 1, is $y$ more likely to be 1 than when $x$ is 0?
 
 * As $x$ increases, does $y$ increase too?
-	- On average
-
-* How do you capture that intuition?
-
-* Rank $x$s and $y$s
-	- Kendall's $\tau$ --- concordant pairs
-	- Spearman's $\rho$ --- Diff. in ranks
-
-## Intuitions we understand
+	* Restatement: When $x$ is larger, is $y$ larger too
+	* On average
 
 * When $x$ is above average, $y$ is above average
 	- Dichotomize. Quadrant Count Ratio.
+
+## Other Intuitions we understand
 
 * Proportion of local changes that are in the same direction
 	```{r}
@@ -132,7 +126,7 @@ output:
 
 * What do you do with that?
 
-## Normalization
+## Normalize
 
 * Normalizing constant
 	- $\sqrt{\Sigma_1^n (x - \bar{x})^2 \Sigma_1^n (y - \bar{y})^2}$
@@ -182,10 +176,24 @@ output:
 		cor(x, y)
 	```
 
+## Rank
+
 * Same order?
 	```{r}
 	 cor(x, y, method = "spearman")
 	```
+
+* | bangles | hoops   | delta_bangles | delta_hoops| rank_bangles | rank_hoops |
+  |---------|---------|---------------|------------|--------------|------------|
+  | 10      | 500     |  1            | 0          |   1          |      1     |
+  | 9       | 500     |  1            | 0          |   2          |      1     |
+  | 8       | 500     |  1            | 250        |   3          |      1     |
+  | 7       | 250     |  1            | 50         |   4          |      3     |
+  | 6       | 200     |  NA           | NA         |   5          |      2     |
+
+* Rank $x$s and $y$s
+	- Kendall's $\tau$ --- concordant pairs
+	- Spearman's $\rho$ --- Diff. in ranks
 
 ## Anscombe's Quartet
 
@@ -208,6 +216,8 @@ output:
 	- Learn from your neighbors
 	- Linear interpolation of means
 	- $y_{40.4} = .6*x_{40} + .4*x_{41}$
+
+* Learning from neighbors even when you have data
 
 * Can't beat the local mean
 	- Bayes Optimal Error

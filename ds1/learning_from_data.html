@@ -1910,29 +1910,21 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section><section id="go-together" class="title-slide slide level1"><h1>go together</h1></section><section id="meaning" class="slide level2">
 <h2>Meaning</h2>
 <ul>
-<li class="fragment">When <span class="math inline">\(x\)</span> is large, is <span class="math inline">\(y\)</span> large too?
-<ul>
-<li class="fragment">What does that mean?</li>
-</ul></li>
+<li class="fragment"><p>When <span class="math inline">\(x\)</span> is large, is <span class="math inline">\(y\)</span> large too?</p></li>
 <li class="fragment"><p>When <span class="math inline">\(x\)</span> is 1, is <span class="math inline">\(y\)</span> more likely to be 1 than when <span class="math inline">\(x\)</span> is 0?</p></li>
 <li class="fragment">As <span class="math inline">\(x\)</span> increases, does <span class="math inline">\(y\)</span> increase too?
 <ul>
+<li class="fragment">Restatement: When <span class="math inline">\(x\)</span> is larger, is <span class="math inline">\(y\)</span> larger too</li>
 <li class="fragment">On average</li>
 </ul></li>
-<li class="fragment"><p>How do you capture that intuition?</p></li>
-<li class="fragment">Rank <span class="math inline">\(x\)</span>s and <span class="math inline">\(y\)</span>s
-<ul>
-<li class="fragment">Kendall — concordant pairs</li>
-<li class="fragment">Spearman — Diff. in ranks</li>
-</ul></li>
-</ul>
-</section><section id="intuitions-we-understand" class="slide level2">
-<h2>Intuitions we understand</h2>
-<ul>
 <li class="fragment">When <span class="math inline">\(x\)</span> is above average, <span class="math inline">\(y\)</span> is above average
 <ul>
 <li class="fragment">Dichotomize. Quadrant Count Ratio.</li>
 </ul></li>
+</ul>
+</section><section id="other-intuitions-we-understand" class="slide level2">
+<h2>Other Intuitions we understand</h2>
+<ul>
 <li class="fragment"><p>Proportion of local changes that are in the same direction</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">    x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>, <span class="dv">600</span>)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">    y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">-17000</span>)</a>
@@ -1964,8 +1956,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <pre><code>## [1] 1000</code></pre></li>
 <li class="fragment"><p>What do you do with that?</p></li>
 </ul>
-</section><section id="normalization" class="slide level2">
-<h2>Normalization</h2>
+</section><section id="normalize" class="slide level2">
+<h2>Normalize</h2>
 <ul>
 <li class="fragment">Normalizing constant
 <ul>
@@ -2008,9 +2000,72 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb23-2" data-line-number="2">    y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">-17000</span>)</a>
 <a class="sourceLine" id="cb23-3" data-line-number="3">    <span class="kw">cor</span>(x, y)</a></code></pre></div>
 <pre><code>## [1] -0.6544996</code></pre></li>
+</ul>
+</section><section id="rank" class="slide level2">
+<h2>Rank</h2>
+<ul>
 <li class="fragment"><p>Same order?</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"> <span class="kw">cor</span>(x, y, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] 0.1428571</code></pre></li>
+<li class="fragment"><table>
+<thead>
+<tr class="header">
+<th>bangles</th>
+<th>hoops</th>
+<th>delta_bangles</th>
+<th>delta_hoops</th>
+<th>rank_bangles</th>
+<th>rank_hoops</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10</td>
+<td>500</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>500</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>500</td>
+<td>1</td>
+<td>250</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>250</td>
+<td>1</td>
+<td>50</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>200</td>
+<td>NA</td>
+<td>NA</td>
+<td>5</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></li>
+<li class="fragment">Rank <span class="math inline">\(x\)</span>s and <span class="math inline">\(y\)</span>s
+<ul>
+<li class="fragment">Kendall’s <span class="math inline">\(\tau\)</span> — concordant pairs</li>
+<li class="fragment">Spearman’s <span class="math inline">\(\rho\)</span> — Diff. in ranks</li>
+</ul></li>
 </ul>
 </section><section id="anscombes-quartet" class="slide level2">
 <h2>Anscombe’s Quartet</h2>
@@ -2037,6 +2092,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">Linear interpolation of means</li>
 <li class="fragment"><span class="math inline">\(y_{40.4} = .6*x_{40} + .4*x_{41}\)</span></li>
 </ul></li>
+<li class="fragment"><p>Learning from neighbors even when you have data</p></li>
 <li class="fragment">Can’t beat the local mean
 <ul>
 <li class="fragment">Bayes Optimal Error</li>
