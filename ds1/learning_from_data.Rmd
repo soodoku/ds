@@ -82,14 +82,9 @@ output:
 
 * When $x$ is 1, is $y$ more likely to be 1 than when $x$ is 0?
 
-* As $x$ increases, does $y$ increase too?
-	* Restatement: When $x$ is larger, is $y$ larger too
+* When $x$ is larger, is $y$ is larger too? 
+	* Restatement: As $x$ increases, does $y$ increase too?
 	* On average
-
-* When $x$ is above average, $y$ is above average
-	- Dichotomize. Quadrant Count Ratio.
-
-## Other Intuitions we understand
 
 * Proportion of local changes that are in the same direction
 	```{r}
@@ -98,18 +93,12 @@ output:
 		mean(diff(x) > 0 & diff(y) > 0)
 	```
 
-* Average of local changes
-	```{r}
-		x = c(100, 200, 300, 400, 500, 600)
-		y = c(1, 2, 3, 4, 5, -17000)
-		mean(c(1/100, 1/100, 1/100, 1/100, -17001/100))
-	```
+## Dummy Correlation 
 
-## Correlation 
+* When $x$ is above average, $y$ is above average
+	- Dichotomize. Quadrant Count Ratio.
 
-* For each $x$, $y$, calculate how far it is from its mean
-
-* Then multiply:
+* Continuous version:
 	- $\Sigma_1^n (x - \bar{x}) (y - \bar{y})$
 	- If you are below the mean, I am below the mean, a positive number
 
@@ -121,10 +110,9 @@ output:
 	```{r}
 	  x = seq(100, 500, 100) - 300
       y = seq(1, 5, 1) - 3
-      sum(x*y)
+      num = sum(x*y)
+      num
 	```
-
-* What do you do with that?
 
 ## Normalize
 
@@ -135,18 +123,27 @@ output:
 		```{r}
 	  	x = sum((seq(100, 500, 100) - 300)^2)
       	y = sum((seq(1, 5, 1) - 3)^2)
-      	sqrt(x*y)
+      	den = sqrt(x*y)
+		den
 		```
+	- Correlation:
+		```{r}
+			num/den
+		```
+
+## Normalize with the lowest value
 
 * What if we subtract 100 and 1?
 
+*	
 	```{r}
 	  x = seq(100, 500, 100) - 100
       y = seq(1, 5, 1) - 1
       sum(x*y)
 	```
 
-	```{r}
+*  
+   ```{r}
 	  	x = sum((seq(100, 500, 100) - 100)^2)
       	y = sum((seq(1, 5, 1) - 1)^2)
       	sqrt(x*y)
@@ -158,13 +155,16 @@ output:
 	```{r}
 		x = c(100, 200, 300, 400, 500, 600)
 		y = c(1, 2, 3, 4, 5, 17000)
-		cor(x[1:5], y[1:5])
-		cor(x, y)
 	```
 
-* Same order?
+* 
 	```{r}
-	 cor(x, y, method = "spearman")
+   		cor(x[1:5], y[1:5])
+	```
+
+* 
+	```{r}
+		cor(x, y)
 	```
 
 ## Linear Relation
@@ -173,6 +173,10 @@ output:
 	```{r}
 		x = c(100, 200, 300, 400, 500, 600)
 		y = c(1, 2, 3, 4, 5, -17000)
+	```
+
+* 
+	```{r}
 		cor(x, y)
 	```
 
@@ -180,7 +184,9 @@ output:
 
 * Same order?
 	```{r}
-	 cor(x, y, method = "spearman")
+		x = c(100, 200, 300, 400, 500, 600)
+		y = c(1, 2, 3, 4, 5, 17000)
+		cor(x, y, method = "spearman")
 	```
 
 * | bangles | hoops   | delta_bangles | delta_hoops| rank_bangles | rank_hoops |
@@ -198,6 +204,12 @@ output:
 ## Anscombe's Quartet
 
 <img src="anscombe.png" alt="Anscombe, via Wikipedia." height="600">
+
+## Lessons
+
+* Pearson's correlation works when the relationship is linear
+* And the data aren't skewed
+* Sometimes you need more than one number to describe a relationship
 
 # Linear Regression
 

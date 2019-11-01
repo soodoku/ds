@@ -58,7 +58,7 @@ output:
 
 ## When the Slope is 0
 
-* If the costs function is quadratic, set first derivative to 0
+* If the cost function is quadratic, set first derivative to 0
 
 * Linear regression:<br>
 	$\hat{y} = \alpha + \beta * x$<br>
