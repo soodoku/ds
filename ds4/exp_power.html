@@ -1831,17 +1831,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">Causation is predicting <span class="math inline">\(Y\)</span> after <em>setting</em> <span class="math inline">\(X = x\)</span>.</li>
 </ul></li>
 </ul>
-</section><section id="comparing-groups" class="slide level2">
-<h2>Comparing Groups</h2>
-<ul>
-<li class="fragment"><span class="math inline">\(E[Y_i| D_i = 1] - E[Y_i|D_i = 0]\)</span></li>
-<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]\)</span></li>
-<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1] - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
-<li class="fragment"><span class="math inline">\(E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
-<li class="fragment">Naive = ATT + Selection Bias</li>
-</ul>
-</section><section id="section" class="slide level2">
-<h2></h2>
+</section><section id="the-fundamental-problem-of-causation" class="slide level2">
+<h2>The Fundamental Problem of Causation</h2>
 <ul>
 <li class="fragment"><table>
 <thead>
@@ -1884,7 +1875,15 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </tr>
 </tbody>
 </table></li>
-<li class="fragment">Fundamental Problem of Causation</li>
+</ul>
+</section><section id="comparing-groups" class="slide level2">
+<h2>Comparing Groups</h2>
+<ul>
+<li class="fragment"><span class="math inline">\(E[Y_i| D_i = 1] - E[Y_i|D_i = 0]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1] - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
+<li class="fragment">Naive = ATT + Selection Bias</li>
 </ul>
 </section><section id="what-random-assignment-does" class="slide level2">
 <h2>What Random Assignment Does</h2>
@@ -1926,6 +1925,10 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li class="fragment">A/A tests</li>
 <li class="fragment">Expected n</li>
+</ul></li>
+<li class="fragment"><p>Inadequate instrumentation</p>
+<ul>
+<li class="fragment">For CTR, we want: delivered, opened, clicked</li>
 </ul></li>
 <li class="fragment"><p>Not measuring both the good and the bad</p></li>
 </ol>

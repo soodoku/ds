@@ -67,15 +67,7 @@ output:
   - Prediction is predicting $Y$ after *observing* $X = x$.
   - Causation is predicting $Y$ after *setting* $X = x$.
 
-## Comparing Groups
-
-  - $E[Y_i| D_i = 1] - E[Y_i|D_i = 0]$
-  - $E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]$
-  - $E[Y_i(1)| D_i = 1] - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
-  - $E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
-  - Naive = ATT + Selection Bias
-
-## 
+## The Fundamental Problem of Causation
 
 * | D    | $Y_0$ | $Y_1$ |
   |------|-------|-------|
@@ -86,7 +78,13 @@ output:
   | 0    |   1   |  *    |
   | 0    |   0   |  *    |
 
-* Fundamental Problem of Causation
+## Comparing Groups
+
+  - $E[Y_i| D_i = 1] - E[Y_i|D_i = 0]$
+  - $E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]$
+  - $E[Y_i(1)| D_i = 1] - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - $E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - Naive = ATT + Selection Bias
 
 ## What Random Assignment Does
 
