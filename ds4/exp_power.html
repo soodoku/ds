@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="gaurav sood" />
-  <meta name="dcterms.date" content="2019-04-19" />
-  <title>causal inference, randomized inference, power</title>
+  <meta name="dcterms.date" content="2019-12-10" />
+  <title>causal inference</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -1379,7 +1379,7 @@ transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
 
     <style type="text/css">code{white-space: pre;}</style>
 
-    <link href="data:text/css;charset=utf-8,%3Cstyle%3E%2Ereveal%20code%20%7Bbackground%2Dcolor%3A%20%23f5f5f5%3B%09%7D%2Ereveal%20p%20code%20%7Bbackground%2Dcolor%3A%20%23f5f5f5%3B%09%7D%2Ereveal%20pre%20code%20%7B%20word%2Dwrap%3A%20normal%3B%20overflow%3A%20visible%3B%20white%2Dspace%3A%20pre%2Dline%3B%20background%2Dcolor%3A%20%23FEFCFF%3B%09width%3A%20950px%3B%20font%2Dsize%3A%2080%25%3B%7D%2Ereveal%20pre%20code%2EsourceCode%20%7B%20background%2Dcolor%3A%20%23f5f5f5%3B%09%7D%2Ereveal%20pre%20%7B%20margin%2Dleft%3A%200px%3B%20width%3A%20950px%3B%20font%2Dsize%3A%2080%25%3Bbackground%2Dcolor%3A%20%23f5f5f5%3B%20%7D%2Ereveal%20pre%2Etext%20code%20%7B%20white%2Dspace%3A%20pre%2Dline%3B%20%7D%2Ereveal%20h1%20%7B%20font%2Dweight%3A%20bold%3B%20%7D%2Ereveal%20h2%2Eauthor%20%7B%20font%2Dstyle%3A%20normal%3B%20%7D%2Ereveal%20section%20img%7B%20border%3A%200px%3B%20%7D%2Ereveal%20%2Eslides%20%7B%20text%2Dalign%3A%20left%3B%20font%2Dsize%3A%2080%25%3B%20%7D%2Ereveal%20%2Eslides%20section%3E%2A%20%7B%20margin%2Dleft%3A%200%3Bmargin%2Dright%3A%200%3B%7D%3C%2Fstyle%3E" rel="stylesheet" />
+    <link href="data:text/css;charset=utf-8,%0A%3Cstyle%3E%0A%0A%2Ereveal%20code%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%09%0A%7D%0A%2Ereveal%20p%20code%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%09%0A%7D%0A%2Ereveal%20pre%20code%20%7B%20%0Aword%2Dwrap%3A%20normal%3B%20%0Aoverflow%3A%20visible%3B%20%0Awhite%2Dspace%3A%20pre%2Dline%3B%20%0Abackground%2Dcolor%3A%20%23FEFCFF%3B%09%0Awidth%3A%20950px%3B%20%0Afont%2Dsize%3A%2080%25%3B%0A%7D%0A%2Ereveal%20pre%20code%2EsourceCode%20%7B%20%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%09%0A%7D%0A%2Ereveal%20pre%20%7B%20%0Amargin%2Dleft%3A%200px%3B%20%0Awidth%3A%20950px%3B%20%0Afont%2Dsize%3A%2080%25%3B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%20%0A%7D%0A%2Ereveal%20pre%2Etext%20code%20%7B%20%0Awhite%2Dspace%3A%20pre%2Dline%3B%20%0A%7D%0A%0A%2Ereveal%20h1%20%7B%20%0Afont%2Dweight%3A%20bold%3B%20%0A%7D%0A%2Ereveal%20h2%2Eauthor%20%7B%20%0Afont%2Dstyle%3A%20normal%3B%20%0A%7D%0A%0A%2Ereveal%20section%20img%7B%20%0Aborder%3A%200px%3B%20%0A%7D%0A%0A%0A%2Ereveal%20%2Eslides%20%7B%20%0Atext%2Dalign%3A%20left%3B%20%0Afont%2Dsize%3A%2080%25%3B%20%0A%7D%0A%2Ereveal%20%2Eslides%20section%3E%2A%20%7B%20%0Amargin%2Dleft%3A%200%3B%0Amargin%2Dright%3A%200%3B%0A%7D%0A%3C%2Fstyle%3E%0A" rel="stylesheet" />
 
 <!-- Printing and PDF exports -->
 <script id="paper-css" type="application/dynamic-css">
@@ -1769,44 +1769,59 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title">causal inference, randomized inference, power</h1>
+    <h1 class="title">causal inference</h1>
     <h2 class="author">gaurav sood</h2>
-    <h3 class="date">April 19, 2019</h3>
+    <h3 class="date">December 10, 2019</h3>
 </section>
 
 <section><section id="cosal-inference" class="title-slide slide level1"><h1>cosal inference</h1></section><section id="casual-inference" class="slide level2">
 <h2>Casual Inference</h2>
 <ul>
-<li class="fragment">Five Habits of Successful People
+<li class="fragment"><p>More frequent system crashes <em>cause</em> people to renew their software license.</p></li>
+<li class="fragment"><p>Five Habits of Successful People</p>
 <ul>
 <li class="fragment">Adopt these and you will be successful too!</li>
 </ul></li>
-<li class="fragment"><p>More frequent system crashes <em>cause</em> people to renew their software license.</p></li>
-<li class="fragment"><p>I took this homeopathic medication and my headache went away!</p></li>
 <li class="fragment"><p>Mayor Giuliani brought the NYC crime rate down.</p></li>
+<li class="fragment"><p>I took this homeopathic medication and my headache went away.</p></li>
 </ul>
 </section><section id="sins" class="slide level2">
 <h2>Sins</h2>
 <ul>
-<li class="fragment">Selecting on the dependent variable
-<ul>
-<li class="fragment">Think about counterfactuals!</li>
-</ul></li>
-<li class="fragment">Mistaking correlation for causation
+<li class="fragment"><p>Mistaking correlation for causation</p>
 <ul>
 <li class="fragment">No causation without manipulation</li>
 </ul></li>
-<li class="fragment"><p>Not accounting for placebo effects</p></li>
+<li class="fragment"><p>Selecting on the dependent variable</p>
+<ul>
+<li class="fragment">Even correlation is not guaranteed!</li>
+<li class="fragment">Survivorship bias!</li>
+</ul></li>
+<li class="fragment"><p>Forgetting about ecological trends</p></li>
 <li class="fragment"><p>Treating temporally proximate as causal</p></li>
-<li class="fragment">In everyday conversation, people frequently make two other errors:
+<li class="fragment"><p>Not accounting for placebo effects</p></li>
+<li class="fragment"><p>In everyday conversation, people frequently make <strong>four</strong> other errors:</p>
 <ul>
 <li class="fragment"><span class="math inline">\(x\)</span> always causes <span class="math inline">\(y\)</span></li>
 <li class="fragment"><span class="math inline">\(x\)</span> causes <span class="math inline">\(y\)</span> to change a lot</li>
+<li class="fragment"><span class="math inline">\(x\)</span> is the <strong>only</strong> cause of <span class="math inline">\(y\)</span></li>
+<li class="fragment">the effect is the same across people</li>
 </ul></li>
 </ul>
 </section></section>
-<section><section id="randomized-inference" class="title-slide slide level1"><h1>Randomized Inference</h1></section><section id="how" class="slide level2">
-<h2>How?</h2>
+<section><section id="randomized-inference" class="title-slide slide level1"><h1>Randomized Inference</h1></section><section id="limits-of-observational-inference" class="slide level2">
+<h2>Limits of Observational Inference</h2>
+<ul>
+<li class="fragment">We can <code>control</code> for things but:
+<ul>
+<li class="fragment">Omitted variables</li>
+<li class="fragment">Endogenous variables</li>
+<li class="fragment">Incorrect functional form</li>
+<li class="fragment">Heterogenous treatment effects</li>
+</ul></li>
+</ul>
+</section><section id="how-to-infer-consequences-of-manipulations" class="slide level2">
+<h2>How to infer consequences of manipulations?</h2>
 <ul>
 <li class="fragment">No causation without manipulation (Holland, 1986)
 <ul>
@@ -1815,17 +1830,18 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">Prediction is predicting <span class="math inline">\(Y\)</span> after <em>observing</em> <span class="math inline">\(X = x\)</span>.</li>
 <li class="fragment">Causation is predicting <span class="math inline">\(Y\)</span> after <em>setting</em> <span class="math inline">\(X = x\)</span>.</li>
 </ul></li>
-<li class="fragment">Comparing Groups
+</ul>
+</section><section id="comparing-groups" class="slide level2">
+<h2>Comparing Groups</h2>
 <ul>
 <li class="fragment"><span class="math inline">\(E[Y_i| D_i = 1] - E[Y_i|D_i = 0]\)</span></li>
 <li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]\)</span></li>
-<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1) - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1] - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
 <li class="fragment"><span class="math inline">\(E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
 <li class="fragment">Naive = ATT + Selection Bias</li>
-</ul></li>
 </ul>
-</section><section id="continued" class="slide level2">
-<h2>Continued …</h2>
+</section><section id="section" class="slide level2">
+<h2></h2>
 <ul>
 <li class="fragment"><table>
 <thead>
@@ -1868,36 +1884,58 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </tr>
 </tbody>
 </table></li>
-<li class="fragment"><p>Fundamental Problem of Causation</p></li>
-<li class="fragment">Experiment:
+<li class="fragment">Fundamental Problem of Causation</li>
+</ul>
+</section><section id="what-random-assignment-does" class="slide level2">
+<h2>What Random Assignment Does</h2>
 <ul>
-<li class="fragment">Unconfounded: <span class="math inline">\(P[D_i = 1|Y_i(0), Y_i(1)] = P[D_i = 1]\)</span></li>
-<li class="fragment">Assignment doesn’t depend on potential outcomes</li>
+<li class="fragment"><span class="math inline">\(P[D_i = 1]\)</span> is probablity of being assigned to treatment</li>
+<li class="fragment">Assignment doesn’t depend on potential outcomes or is <strong>unconfounded</strong>
+<ul>
+<li class="fragment"><span class="math inline">\(P[D_i = 1|Y_i(0), Y_i(1)] = P[D_i = 1]\)</span></li>
+<li class="fragment">SUTVA or No Interference <br><br></li>
 </ul></li>
-<li class="fragment"><p><span class="math inline">\(E[Y_i|D_i = 0] = E[Y_i (0)|D_i = 0] = E[Y_i(0)] = E[Y_i(0)| D_i = 1]\)</span></p></li>
 <li class="fragment">Randomization nukes selection bias:
 <ul>
-<li class="fragment"><span class="math inline">\(E[Y_i(1)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
-<li class="fragment">$ = E[Y_i(1)] - E[Y_i(0)]$ because of unconfoundedness</li>
+<li class="fragment"><span class="math inline">\(E[Y_i| D_i = 1] - E[Y_i|D_i = 0]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
+<li class="fragment">ATT + <span class="math inline">\(E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]\)</span></li>
+<li class="fragment">because of unconfoundedness
+<ul>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)| D_i = 1] = E[Y_i(0)| D_i = 0] = E[Y_i(1)] - E[Y_i(0)]\)</span> <br><br></li>
+</ul></li>
 </ul></li>
 <li class="fragment">Leaves:
 <ul>
 <li class="fragment"><span class="math inline">\(E[Y_i(1)|D_i = 1] - E[Y_i(0)| D_i = 1]\)</span></li>
+<li class="fragment"><span class="math inline">\(E[Y_i(1)] - E[Y_i(0)]\)</span></li>
 </ul></li>
 </ul>
-</section><section id="two-common-errors-in-experiment-design" class="slide level2">
-<h2>Two Common Errors in Experiment Design</h2>
+</section><section id="common-errors-in-experiment-design" class="slide level2">
+<h2>Common Errors in Experiment Design</h2>
 <ol type="1">
 <li class="fragment"><p>Optimistic Estimates of Effect Sizes</p></li>
-<li class="fragment"><p>Wasted <span class="math inline">\(n\)</span></p></li>
+<li class="fragment"><p>Bundling Treatments</p></li>
+<li class="fragment"><p>Not Having a Strategy for Compliance</p></li>
+<li class="fragment"><p>Interference</p>
+<ul>
+<li class="fragment">Learning</li>
+<li class="fragment">Self-selection</li>
+</ul></li>
+<li class="fragment"><p>Implementation Failures</p>
+<ul>
+<li class="fragment">A/A tests</li>
+<li class="fragment">Expected n</li>
+</ul></li>
+<li class="fragment"><p>Not measuring both the good and the bad</p></li>
 </ol>
 </section></section>
 <section><section id="power" class="title-slide slide level1"><h1>Power</h1></section><section id="standard-error" class="slide level2">
 <h2>Standard Error</h2>
 <ul>
-<li class="fragment"><span class="math inline">\(s.e. = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}\)</span></li>
-<li class="fragment"><span class="math inline">\(s.e. \sim f(\hat{p}, n)\)</span></li>
-<li class="fragment">For a particular <span class="math inline">\(n\)</span>, largest s.e. for <span class="math inline">\(p = .5\)</span></li>
+<li class="fragment"><p><span class="math inline">\(s.e. = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(s.e. \sim f(\hat{p}, n)\)</span></p></li>
+<li class="fragment"><p>For a particular <span class="math inline">\(n\)</span>, largest s.e. for <span class="math inline">\(p = .5\)</span></p></li>
 <li class="fragment"><p>If you want a s.e. no larger than <span class="math inline">\(x\)</span>, how large should <span class="math inline">\(n\)</span> be for a particular <span class="math inline">\(\alpha\)</span> or a False Positive Rate?</p></li>
 <li class="fragment"><table>
 <thead>
@@ -1920,7 +1958,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </tr>
 </tbody>
 </table></li>
-<li class="fragment">False Positive: <span class="math inline">\(\alpha = .05\)</span> and <span class="math inline">\(1.96*s.e.\)</span></li>
+<li class="fragment"><p>False Positive: <span class="math inline">\(\alpha = .05\)</span> and <span class="math inline">\(1.96*s.e.\)</span></p></li>
 <li class="fragment"><p>Power = <span class="math inline">\(1 - \beta\)</span> or the probability of not rejecting a null hypothesis when it is false.</p></li>
 </ul>
 </section><section id="standard-error-of-diff.-in-proportions" class="slide level2">
@@ -1937,7 +1975,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li class="fragment"><p>Conventionally, studies seen as reasonably powered if <span class="math inline">\(\beta &gt;= .8\)</span></p></li>
 <li class="fragment"><p>Let’s think carefully about effect sizes.<br /> &gt; If you send an email to encourage me to use a new product, <br /> and measure success as proportion of people who follow-up on that, how many people do you think would follow-up?</p></li>
-<li class="fragment">Here’s how to think: Imagine a funnel:
+<li class="fragment"><p>Here’s how to think: Imagine a funnel:</p>
 <ol type="1">
 <li class="fragment">Assume that people must read the email for the email to have an effect.</li>
 <li class="fragment">How many people will receive the email? Say <strong>99%.</strong></li>
@@ -1982,14 +2020,16 @@ power = pnorm(a, 3.3, se) + (1 - pnorm(b, 3.3, se))</code></pre>
 </section><section id="decision-making" class="slide level2">
 <h2>Decision Making:</h2>
 <ul>
-<li class="fragment">Quantiles</li>
+<li class="fragment">Quantiles
+<ul>
+<li class="fragment"><a href="https://medium.com/netflix-techblog/streaming-video-experimentation-at-netflix-visualizing-practical-and-statistical-significance-7117420f4e9a">Netflix</a></li>
+</ul></li>
 <li class="fragment">Bayesian</li>
 <li class="fragment">Trade-offs</li>
 <li class="fragment">Multiple Comparisons:
 <ul>
 <li class="fragment">Bonferroni Correction (Boole’s inequality): <span class="math inline">\(P (T_i passes | H_0) \leq \frac{\alpha}{n}\)</span></li>
 <li class="fragment">Assumes independence of outcomes</li>
-<li class="fragment"><a href="https://medium.com/netflix-techblog/streaming-video-experimentation-at-netflix-visualizing-practical-and-statistical-significance-7117420f4e9a">Netflix</a></li>
 <li class="fragment"><a href="http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-a-quick-adjustment-for-multiple-hypothesis-testing">WB</a></li>
 </ul></li>
 </ul>

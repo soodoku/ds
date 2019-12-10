@@ -1,7 +1,7 @@
 ---
-title: "causal inference, randomized inference, power"
+title: "causal inference"
 author: gaurav sood
-date: April 19, 2019
+date: December 10, 2019
 output:
   revealjs::revealjs_presentation:
     theme: simple
@@ -19,43 +19,47 @@ output:
 
 ## Casual Inference
 
+* More frequent system crashes *cause* people to renew their software license.
+
 * Five Habits of Successful People
   - Adopt these and you will be successful too!
 
-* More frequent system crashes *cause* people to renew their software license.
+* Mayor Giuliani brought the NYC crime rate down.
 
 * I took this homeopathic medication and my headache went away.
 
-* Mayor Giuliani brought the NYC crime rate down.
-
 ## Sins
-
-* Selecting on the dependent variable
-  - Think about counterfactuals!
 
 * Mistaking correlation for causation
   - No causation without manipulation
 
-* Not accounting for placebo effects
+* Selecting on the dependent variable
+  - Even correlation is not guaranteed!
+  - Survivorship bias!
+
+* Forgetting about ecological trends
 
 * Treating temporally proximate as causal
 
-* In everyday conversation, people frequently make two other errors:
+* Not accounting for placebo effects
+
+* In everyday conversation, people frequently make **four** other errors:
   - $x$ always causes $y$
   - $x$ causes $y$ to change a lot
+  - $x$ is the **only** cause of $y$
   - the effect is the same across people
 
 # Randomized Inference
 
 ## Limits of Observational Inference
 
-* `Control` for things but:
+* We can `control` for things but:
   - Omitted variables
   - Endogenous variables
   - Incorrect functional form
   - Heterogenous treatment effects
 
-## How?
+## How to infer consequences of manipulations?
 
 * No causation without manipulation (Holland, 1986)
   - Otherwise why would the same people be exposed to different things?
@@ -63,16 +67,15 @@ output:
   - Prediction is predicting $Y$ after *observing* $X = x$.
   - Causation is predicting $Y$ after *setting* $X = x$.
 
-* Comparing Groups
-  - Notation:
-    -
+## Comparing Groups
+
   - $E[Y_i| D_i = 1] - E[Y_i|D_i = 0]$
   - $E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]$
-  - $E[Y_i(1)| D_i = 1) - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - $E[Y_i(1)| D_i = 1] - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
   - $E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
   - Naive = ATT + Selection Bias
 
-## Continued ...
+## 
 
 * | D    | $Y_0$ | $Y_1$ |
   |------|-------|-------|
@@ -85,24 +88,44 @@ output:
 
 * Fundamental Problem of Causation
 
-* Experiment:
-  - Unconfounded: $P[D_i = 1|Y_i(0), Y_i(1)] = P[D_i = 1]$
-  - Assignment doesn't depend on potential outcomes
+## What Random Assignment Does
 
-* $E[Y_i|D_i = 0] = E[Y_i (0)|D_i = 0] = E[Y_i(0)] = E[Y_i(0)| D_i = 1]$
-
+  - $P[D_i = 1]$ is probablity  of being assigned to treatment
+  - Assignment doesn't depend on potential outcomes or is **unconfounded**
+    - $P[D_i = 1|Y_i(0), Y_i(1)] = P[D_i = 1]$
+    - SUTVA or No Interference
+<br><br>
 * Randomization nukes selection bias:
-  - $E[Y_i(1)|D_i = 1] - E[Y_i(0)| D_i = 0]$
-  - $ = E[Y_i(1)] - E[Y_i(0)]$ because of unconfoundedness
-
+  - $E[Y_i| D_i = 1] - E[Y_i|D_i = 0]$
+  - $E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - ATT + $E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - because of unconfoundedness
+    - $E[Y_i(1)| D_i = 1] =  E[Y_i(0)| D_i = 0] = E[Y_i(1)] - E[Y_i(0)]$ 
+<br><br>
 * Leaves:
   - $E[Y_i(1)|D_i = 1] - E[Y_i(0)| D_i = 1]$
+  - $E[Y_i(1)] - E[Y_i(0)]$
 
-## Two Common Errors in Experiment Design
+## Common Errors in Experiment Design
 
 1. Optimistic Estimates of Effect Sizes
 
-2. Wasted $n$
+2. Bundling Treatments
+
+3. Not Having a Strategy for Compliance
+
+4. Interference
+    - Learning
+    - Self-selection
+
+5. Implementation Failures
+    - A/A tests
+    - Expected n
+    
+6. Inadequate instrumentation
+    - For CTR, we want: delivered, opened, clicked
+
+7. Not measuring both the good and the bad
 
 # Power
 
