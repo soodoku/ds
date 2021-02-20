@@ -1,7 +1,6 @@
 ---
 title: "learning from data"
 author: gaurav sood
-date: September 29, 2019
 output:
   revealjs::revealjs_presentation:
     theme: simple
