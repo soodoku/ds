@@ -74,13 +74,13 @@ output:
 ## Confusion About Confusion Matrices
 
 * Given model, produce confusion matrix
-  - and reason about precision, recall, etc.
+  * using the confusion matrix, calculate precision, recall, etc.
 
 * This gets it backwards
 
 * Most classification models output a continuous variable: estimated probability
 
-* And for the same model, you can build multiple decision rules that give different confusion matrices.
+* For the same model, you can build multiple decision rules that give different confusion matrices
 
 ## ROC
 
