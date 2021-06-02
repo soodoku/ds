@@ -15,7 +15,12 @@
     - Decomposing Error in Bias, Variance, Irreducible Error
     - Practical Trade-offs between Bias and Variance
 
-* [Causal Inference](ds4/)
+* [Evaluating Models](ds4/)
+    - Metrics for evaluating models
+    - Clearing up confusion about confusion matrices
+    - How to construct your test data
+
+* [Causal Inference](ds5/)
     - *Cosal* Inference
     - Experimental Inference
     - Power
