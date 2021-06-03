@@ -29,6 +29,34 @@ output:
   <li class = "fragment"> Find the model with the best test set performance</li>
 </ul>
 
+## OOS
+
+* Rule: Don't look at the test data *too often*
+  * Say we want to choose the degree of polynomial but use test error to pick the model, we would have an optimistic assessment of its performance.
+  * Train/Dev/Test
+
+* How to construct OOS
+  * Distribution:
+    * Dev and test set should come from the same distribution
+    * choose dev set and test set to reflect data you expect to get in the future and consider important to do well on
+  
+  * Size
+    * Test set has to be big enough to give you a good estimate of performance
+    * Small data and lots of features: 60/20/20
+    * Big Data: 95/2.5/2.5 
+
+## Satisficing Metric and Optimizing Metric
+
+* Satisficing metrics: 
+  * $\sim$ Constraints
+  * Examples:
+    * Maximize accuracy subject to running time $<= 100ms$
+    * Alexa: Maximize accuracy subject to the constraint that FPR is 1 FP per 24 hrs
+
+* Regularization
+  * MinDiff $\sim$ Equalize error rates across groups.
+  * Source: <a href = "https://arxiv.org/pdf/1910.11779.pdf">Google; Proust et al. 2019</a>
+
 # Metrics
 
 ## $R^2$
@@ -106,7 +134,6 @@ Pred --->
 0 | TN | FP|
 1 | FN | TP|
 
-
 ## Metrics
 
 * Accuracy:   $\frac{TP + TN}{TP + TN + FP + FN}$ 
@@ -144,35 +171,6 @@ Pred --->
 * $F_\beta$: 
   * $\beta$ captures how important recall is vis-a-vis precision
   * $(1 + \beta^2) \frac{\text{precision*recall}}{\beta^2\text{precision + recall}}$ 
-
-
-## OOS
-
-* Rule: Don't look at the test data *too often*
-  * Say we want to choose the degree of polynomial but use test error to pick the model, we would have an optimistic assessment of its performance.
-  * Train/Dev/Test
-
-* How to construct OOS
-  * Distribution:
-    * Dev and test set should come from the same distribution
-    * choose dev set and test set to reflect data you expect to get in the future and consider important to do well on
-  
-  * Size
-    * Test set has to be big enough to give you a good estimate of performance
-    * Small data and lots of features: 60/20/20
-    * Big Data: 95/2.5/2.5 
-
-## Satisficing Metric and Optimizing Metric
-
-* Satisficing metrics: 
-  * $\sim$ Constraints
-  * Examples:
-    * Maximize accuracy subject to running time $<= 100ms$
-    * Alexa: Maximize accuracy subject to the constraint that FPR is 1 FP per 24 hrs
-
-* Regularization
-  * MinDiff $\sim$ Equalize error rates across groups.
-  * Source: <a href = "https://arxiv.org/pdf/1910.11779.pdf">Google; Proust et al. 2019</a>
 
 ## Diagnosing Bias/Variance
 
