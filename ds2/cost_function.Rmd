@@ -110,3 +110,17 @@ output:
 
 * Gradient update:<br>
   $b = b - \alpha * \frac{\partial J}{\partial b}$
+
+## 101 DL with Log Loss
+
+* $z = w^{t}*x + b$
+
+* $a = \sigma(z)$
+
+* $y*log(a) - (1 - y)*log(1 - a)$
+
+* Chain Rule: $\frac{\partial J}{\partial a} = \frac{\partial J}{\partial k} \frac{\partial k}{\partial a}$
+
+* $\frac{\partial J}{\partial a} = -\frac{y}{a} \frac{1 - y}{1 - a}$
+
+* $\frac{\partial a}{\partial z} = -\frac{y}{a} \frac{1 - y}{1 - a}$

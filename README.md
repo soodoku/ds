@@ -14,11 +14,16 @@
 * [Error, Bias, Variance](ds3/)
     - Decomposing Error in Bias, Variance, Irreducible Error
     - Practical Trade-offs between Bias and Variance
+    - Regularization, Dropout, etc.
 
 * [Evaluating Models](ds4/)
     - Metrics for evaluating models
     - Clearing up confusion about confusion matrices
     - How to construct your test data
+
+* [What Data to Collect?](ds5/)
+    - Active learning
+    - Generating types
 
 * [Causal Inference](ds5/)
     - *Cosal* Inference

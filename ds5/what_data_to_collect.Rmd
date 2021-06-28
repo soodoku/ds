@@ -1,0 +1,55 @@
+---
+title: "what data to collect?"
+author: gaurav sood
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    incremental: true
+    transition: slide
+    highlight: haddock
+    center: true
+    fig_width: 5
+    fig_height: 4
+    css: reveal.css
+    fig_caption: true
+---
+
+## What Data To Collect?
+
+* Start of the project:
+  - Aim = MVP that produces value
+  - Easy to classify cases
+    - High precision and low recall
+  - Random sample and then deploy a high precision threshold
+
+* Improving ML
+  * Which point gives me the highest ROI?
+  * Let's assume same cost which reduces to highest returns
+  * Returns could be = largest reductions in RMSE
+  * This generally means points with largest influence
+  * Experimentally find them or figure out from data
+  * Other heuristics:
+    - points with the largest error
+      * Can help you discover incorrect labels
+    - points with the largest uncertainty 
+
+## How to Collect the Data
+
+* From points to kinds of points
+  - Say we discover $x_1, x_2, x_3, ...$
+  - We now need to abstract out the type
+  - Type means clarifying what X is not and what X is
+    + What is the diff. with the rest of the data
+    + Clustering
+
+## Other Hacks
+
+* Self-training
+  - Train the model on the labeled data.
+  - Have the model label the unlabeled data.
+  - Take some of the examples the model is most confident about (i.e., the model gives them high probability). Add those examples with the model's labels to the training set
+
+* Multi-view training
+  - Train k models using k representations of data
+    + Example: classifying webpages using images or text
+  - Use high confidence predictions (majority vote) from other model to label data of a model
