@@ -1801,7 +1801,64 @@ Find the model with the best test set performance
 </li>
 </ul>
 </section>
-<section><section id="metrics" class="title-slide slide level1"><h1>Metrics</h1></section><section id="r2" class="slide level2">
+<section id="oos" class="slide level2">
+<h2>OOS</h2>
+<ul>
+<li class="fragment"><p>Rule: Don’t look at the test data <em>too often</em></p></li>
+<li class="fragment">Problem:
+<ul>
+<li class="fragment">Say we want to choose the degree of polynomial but use test error to pick the model, we would have an optimistic assessment of its performance.</li>
+</ul></li>
+<li class="fragment">Solution:
+<ul>
+<li class="fragment">Train/Dev/Test</li>
+</ul></li>
+<li class="fragment">How to construct OOS
+<ul>
+<li class="fragment">Distribution:
+<ul>
+<li class="fragment">Dev and test sets should reflect data you expect to get in the future</li>
+<li class="fragment">Dev and test sets should come from the same distribution</li>
+</ul></li>
+<li class="fragment">Size
+<ul>
+<li class="fragment">Test set has to be big enough to give you a good estimate of the performance</li>
+<li class="fragment">Small data and lots of features: 60/20/20</li>
+<li class="fragment">Big Data: 95/2.5/2.5</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section><section id="metrics" class="title-slide slide level1"><h1>Metrics</h1></section><section id="satisficing-metric-and-optimizing-metric" class="slide level2">
+<h2>Satisficing Metric and Optimizing Metric</h2>
+<ul>
+<li class="fragment">Satisficing metrics:
+<ul>
+<li class="fragment"><span class="math inline">\(\sim\)</span> Constraints</li>
+<li class="fragment">Examples:
+<ul>
+<li class="fragment">Maximize accuracy subject to running time <span class="math inline">\(&lt;= 100ms\)</span></li>
+<li class="fragment">Alexa: Maximize accuracy subject to the constraint that FPR is 1 FP per 24 hrs</li>
+</ul></li>
+</ul></li>
+<li class="fragment">Regularization
+<ul>
+<li class="fragment">MinDiff <span class="math inline">\(\sim\)</span> Equalize error rates across groups.</li>
+<li class="fragment">Source: <a href="https://arxiv.org/pdf/1910.11779.pdf">Google; Proust et al. 2019</a></li>
+</ul></li>
+</ul>
+</section><section id="measuring-performance" class="slide level2">
+<h2>Measuring Performance</h2>
+<ul>
+<li class="fragment">RMSE</li>
+<li class="fragment">MAE</li>
+<li class="fragment"><span class="math inline">\(R^2\)</span></li>
+<li class="fragment">Deviance</li>
+<li class="fragment">AUC</li>
+<li class="fragment">Accuracy</li>
+<li class="fragment">…</li>
+</ul>
+</section><section id="r2" class="slide level2">
 <h2><span class="math inline">\(R^2\)</span></h2>
 <ul>
 <li class="fragment">Fraction of Unexplained Variance
@@ -1959,47 +2016,6 @@ Find the model with the best test set performance
 <ul>
 <li class="fragment"><span class="math inline">\(\beta\)</span> captures how important recall is vis-a-vis precision</li>
 <li class="fragment"><span class="math inline">\((1 + \beta^2) \frac{\text{precision*recall}}{\beta^2\text{precision + recall}}\)</span></li>
-</ul></li>
-</ul>
-</section><section id="oos" class="slide level2">
-<h2>OOS</h2>
-<ul>
-<li class="fragment">Rule: Don’t look at the test data <em>too often</em>
-<ul>
-<li class="fragment">Say we want to choose the degree of polynomial but use test error to pick the model, we would have an optimistic assessment of its performance.</li>
-<li class="fragment">Train/Dev/Test</li>
-</ul></li>
-<li class="fragment">How to construct OOS
-<ul>
-<li class="fragment">Distribution:
-<ul>
-<li class="fragment">Dev and test set should come from the same distribution</li>
-<li class="fragment">choose dev set and test set to reflect data you expect to get in the future and consider important to do well on</li>
-</ul></li>
-<li class="fragment">Size
-<ul>
-<li class="fragment">Test set has to be big enough to give you a good estimate of performance</li>
-<li class="fragment">Small data and lots of features: 60/20/20</li>
-<li class="fragment">Big Data: 95/2.5/2.5</li>
-</ul></li>
-</ul></li>
-</ul>
-</section><section id="satisficing-metric-and-optimizing-metric" class="slide level2">
-<h2>Satisficing Metric and Optimizing Metric</h2>
-<ul>
-<li class="fragment">Satisficing metrics:
-<ul>
-<li class="fragment"><span class="math inline">\(\sim\)</span> Constraints</li>
-<li class="fragment">Examples:
-<ul>
-<li class="fragment">Maximize accuracy subject to running time <span class="math inline">\(&lt;= 100ms\)</span></li>
-<li class="fragment">Alexa: Maximize accuracy subject to the constraint that FPR is 1 FP per 24 hrs</li>
-</ul></li>
-</ul></li>
-<li class="fragment">Regularization
-<ul>
-<li class="fragment">MinDiff <span class="math inline">\(\sim\)</span> Equalize error rates across groups.</li>
-<li class="fragment">Source: <a href="https://arxiv.org/pdf/1910.11779.pdf">Google; Proust et al. 2019</a></li>
 </ul></li>
 </ul>
 </section><section id="diagnosing-biasvariance" class="slide level2">

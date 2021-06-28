@@ -32,18 +32,24 @@ output:
 ## OOS
 
 * Rule: Don't look at the test data *too often*
+
+* Problem:
   * Say we want to choose the degree of polynomial but use test error to pick the model, we would have an optimistic assessment of its performance.
+
+* Solution:
   * Train/Dev/Test
 
 * How to construct OOS
   * Distribution:
-    * Dev and test set should come from the same distribution
-    * choose dev set and test set to reflect data you expect to get in the future and consider important to do well on
+    * Dev and test sets should reflect data you expect to get in the future
+    * Dev and test sets should come from the same distribution
   
   * Size
-    * Test set has to be big enough to give you a good estimate of performance
+    * Test set has to be big enough to give you a good estimate of the performance
     * Small data and lots of features: 60/20/20
     * Big Data: 95/2.5/2.5 
+
+# Metrics
 
 ## Satisficing Metric and Optimizing Metric
 
@@ -57,7 +63,15 @@ output:
   * MinDiff $\sim$ Equalize error rates across groups.
   * Source: <a href = "https://arxiv.org/pdf/1910.11779.pdf">Google; Proust et al. 2019</a>
 
-# Metrics
+## Measuring Performance
+
+* RMSE
+* MAE
+* $R^2$
+* Deviance
+* AUC
+* Accuracy
+* ...
 
 ## $R^2$
 
