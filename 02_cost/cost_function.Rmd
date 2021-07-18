@@ -14,36 +14,79 @@ output:
     fig_caption: true
 ---
 
-# Three Facts About Statistics
-
-## Triple Wisdom
-
-* Statistics is the science of *optimally* reducing lots of numbers into fewer numbers
-* Formulas are only right *when* assumptions hold.
-* All distance metrics are arbitrary. But supervision provides a way to *optimally* scale distances.
- 
 # Estimating Functions
+
+## House Size and Price
+
+* Let's say that we have the following data:
+    ```{r eval=FALSE}
+     $2000, 400 sq. ft.
+     $8000, 600 sq. ft.
+    ```
+  * Predict the price of a 400 sq. ft. house
+    - $2000?
+
+* Let's say that we have the following data:
+    ```{r eval=FALSE}
+     $2000, 400 sq. ft.
+     $3000, 400 sq. ft.
+     $8000, 600 sq. ft.
+     ```
+    * Predict the price of a 400 sq. ft. house
+      - $2500?
 
 ## Functional Estimation
 
-* Functions map each $x$ to one $y$
+* What is a function?
+  - For each $x$ there is just one $y$
 
-* But with data with generally have two issues:
-  - multiple $y$s with the same $x$
-  - $y$ in sparse corners---no close neighbors
+* Same size but multiple prices
 
-* Most of ML $\sim$ Functional Estimation
+* So how do you get one $y$ for one $x$? 
+  * One ans.: for the $same$ house size: predict the mean
+  * Another = find a function that minimizes error
 
-* $y = f(x) + \epsilon$ 
+* Let's say that we have the following data:
+    ```{r eval=FALSE}
+     $2000, 350 sq. ft.
+     $3000, 450 sq. ft.
+    ```
+  * Predict the price of a 400 sq. ft. house
+    - Linearly interpolate? $y_{400} = .5*x_{350} + .5*x_{450}$
+    - Intuition = neighbors and smoothness
 
-* $\epsilon \sim N(0, \sigma^2)$
+## It Gets Weird
 
-* $\epsilon$ also called the irreducible error
+* Let's say that we have the following data:
+    ```{r eval=FALSE}
+     $2000, 350 sq. ft.
+     $2300, 400 sq. ft.
+     $3000, 450 sq. ft.
+    ```
+    * Predict the price of a 400 sq. ft. house
+      - $2300? 
+      - If you use linear regression, you assume a linear relationship $y = f(x) = a + b*x$ and then predict based on the 'best fitting' line.
+        +  Line that minimizes squared errors in $y$: $(y - \hat{y})^2$
 
-* $Cost  = (y - \hat{f}(x))^2$
+    * What if you add another point that's way out: ```$8000, 600 sq. ft.```? 
+      - Squared errors mean that our prediction would be very different from $2300
+
+## Good Function?
+
+* Check if linearity is a good assumption
+  - Does it fit the data well?
+  - Are the errors huge?
+  - Are the errors huge in one place and small in other places?
+
+* More generally
+  * $y = f(x) + \epsilon$ 
+  * $\epsilon \sim N(0, \sigma^2)$
+  * $\epsilon$ also called the irreducible error
+  * $Cost  = (y - \hat{f}(x))^2$
+  * Minimize cost
 
 # Cost
-
+ 
 ## The Cost of Everything
 
 * Loss = Over one training example

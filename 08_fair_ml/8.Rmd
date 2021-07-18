@@ -1,0 +1,197 @@
+# Computer Vision
+
+* How to build generalizable models?
+    - What data do you need to build good generalizable models
+    - Classification:
+        + Inter-class variation:
+            * Cat images, Dog images
+        + Intra-class variation:
+            * How many different types of cats exist
+    - Lots of diff. classes:
+        + It forces the ML algorithm to not learn from shallow features
+        + LeCun: 
+            * Big data
+            * Y that is so variable that the only ML that will work is one that has a 'good' understanding of each of the classes
+
+* Why Do Instance Segmentation?
+    - Tesla: what is the car ahead of me
+        + it is tracking [variation in speed] and direction of it
+            * is the car ahead of me breaking?
+        + why did we step away from radars?
+            * consistent labeling doesn't happen with radars
+
+* Regions of interest
+    - dpis, diff height and width, ...
+        + exhaustive search 
+            * no, that's not happening
+    - Selective Search
+        + Hierarchical clustering
+        + Similarity (Distance):
+            * Color
+            * Texture
+            * ...
+        + Pixel, what is the next pixel that you want to absorb, ...
+
+* Loss Function for Object Detection
+    * Localize where the object is
+        - Bounding box
+            + (x, y), width, height 
+            + top_left
+        - Loss function:
+            + (x - \hat{x})^2 
+            + (y - \hat{y})^2
+            + (\sqrt(w) - \hat{\sqrt(w)})^2 
+    * Prob. that the object is in the box
+    * Classify the object
+        - 
+    * Loss = \Sum Localization Loss and a Classification Loss
+           = weight these things
+
+* Upsampling:
+
+* Mean Average Precision
+    - PR curves - class1, class2, class3
+    - average the precision, recall value -> mean average precision
+
+
+# Ethical ML
+
+## Inventory
+
+1. Privacy
+    - Share the data - the person may be discriminated against
+        + credit check
+    - why privacy is violated?
+        + because you are openly selling data
+        + inadvertent disclosures due to poor security
+
+2. Unfair allocations (decisions)
+    - Reasons
+        + Bad labels
+            * Interview panel has been making decisions about who gets in
+                - check if this person plays lacrosse
+                    + crack team of ML algo. people and say can we learn a model:
+                        + i will give you resume, you need to learn a classifier about who gets in and who gets out
+
+3. Who uses the model for what purpose?
+    - Uyghur
+    - Fire:
+        - burn houses and cook food  
+
+4. 'Right objective functions'
+
+5. Transparency Decision making honest is by exposing by criteria so that people can challenge it
+    - Procedural Fairness Bad Models -> Bad outcomes
+
+6. Representational Harm:
+    - In the US, for instance, historically a greater portion of doctors has been men
+        + word2vec -> doctor, male
+        + image search -> reflecting the biases of data/society
+
+## Allocative Harm
+
+* Fairness:
+    - Who gets a loan and who doesn't
+    - When the classifier is 100% accurate (w.r.t the true label), end discussion of fairness
+    - When the classifier is a random coin toss, end discussion of fairness
+    - Misclassifications
+
+* Bad outcomes
+    - Minority group is harmed more
+
+* Group Fairness
+    - Decide on fairness based on the fairness of the outputs
+        + final hot dog needs to meet certain criteria
+    - Equal proportion of misclassifications across groups
+        - per 100 people of group X, we make 10 errors
+        - per 100 people of group Y, we make 10 errors
+    - Example: Sentencing
+        + ML -> recidivism rates
+    - Example for Representative 
+        + doctor: equal split for men/women. fair w.r.t. men and women
+    
+    - Concerns
+        + How do you define which groups
+        + How do you measure groups --> self-reports?
+            * evaluate whether the ML algo. is fair or not and we can't do it
+                - it is not trivial to do it
+        + per 100 people of group Y, we make 10 errors
+            * group X ---> FP
+            * group Y ---> FN
+            * equal accuracy (equal FPR and equal FNR)
+
+    - Solutions
+        
+        * Not using protected attributes
+            * location, ethnicity, sex, etc.
+            * sentencing:
+                - women recidivate at lower rates than men
+                    + women longer sentences if you don't 'control' for 'sex' in the classifier
+                        * including an 'irrelevant' variables leads to 'less biased' outcomes
+         * Multiple models
+            - one without the "irrelevant" Xs, one with the "irrelevant" Xs 
+
+         * Adjusting the importance of certain features
+            - weight by penalized when it has high cor. w/ 
+
+         * Increase the class weight of the underrepresented classes
+             - errors that ML is minimizing is obviously paying more attention to the majority class
+                 + beta adjustments -> we are paying more attention to the maj. class
+                 + the min. class has worse predictions than maj. class
+                 + why not train separate models for each group?
+            
+         * Constrained optimization
+            * Objective function = max_accuracy/min_cost
+            * Constraint: that group_wise error rates are the same
+            * When we are doing param. search, our search space is somewhat restricted
+            * Andrew Ng: satisficing vs. optimizing metric
+                - constraint = satisficing metric
+
+        * Multi-objective optimization:
+            - pareto frontier
+                + solution space where you cannot improve on one objective (fairness) without compromising another
+        
+        * Trade-offs:
+            * Loan classification (who gets a loan and who doesn't):
+                - all groups ~ equalize error rates
+                - accuracy vs. fairness
+                    -  group_x is the one we want to protect
+                    -  unfair:
+                        - group_x, per 100, 10 errors
+                        - group_y, per 100, 5 errors
+                    - fair:
+                        - group_x, per 100, 20 errors
+                        - group_y, per 100, 20 errors
+                - lender's perspective:
+                    - less accurate model -> interest rates are going to be higher
+                    -  unfair:
+                        - group_x, per 100, 10%
+                        - group_y, per 100, 5%
+                    - fair:
+                        - group_x, per 100, 15% -> fewer members of group_x will get a loan, or they will pay a higher interest rate for the same loan
+                        - group_y, per 100, 15%
+        
+        * More data
+        * Solution:
+            - Ind.
+                + discriminating against --- are people where we are most uncertain
+                + wider confidence bands for members in group_x vs. group_y on average
+                + predict confidence bands
+                    * point estimate of a person's prob. of paying back the loan
+                        - is not a good estimate
+                        - we don't actually know whether the person pay back the loan or not
+                    * if confidence_bands are big:
+                        - collect more data or 
+            - Problem is not biased labels but the fact that we have less accurate predictions for group_x verus y 
+
+* Skander:
+    - ML for exploring biases in decision making than actually for decision making
+    - good labels:
+        + assess decision making system: group_by(group) for errors
+
+* Ind. Fairness
+
+## Concern
+
+* Hide info. about the user so that you don't make 'biased' decision
+    - location, ethnicity, etc.

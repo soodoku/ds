@@ -1083,6 +1083,66 @@ visibility: hidden; }
 </style>
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+</style>
 
 <style type="text/css">
 @font-face {
@@ -1772,28 +1832,92 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <h2 class="author">gaurav sood</h2>
 </section>
 
-<section><section id="three-facts-about-statistics" class="title-slide slide level1"><h1>Three Facts About Statistics</h1></section><section id="triple-wisdom" class="slide level2">
-<h2>Triple Wisdom</h2>
+<section><section id="estimating-functions" class="title-slide slide level1"><h1>Estimating Functions</h1></section><section id="house-size-and-price" class="slide level2">
+<h2>House Size and Price</h2>
 <ul>
-<li class="fragment">Statistics is the science of <em>optimally</em> reducing lots of numbers into fewer numbers</li>
-<li class="fragment">Formulas are only right <em>when</em> assumptions hold.</li>
-<li class="fragment">All distance metrics are arbitrary. But supervision provides a way to <em>optimally</em> scale distances.</li>
+<li class="fragment"><p>Let’s say that we have the following data:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"> <span class="op">$</span><span class="dv">2000</span>, <span class="dv">400</span> sq. ft.</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"> <span class="op">$</span><span class="dv">8000</span>, <span class="dv">600</span> sq. ft.</a></code></pre></div>
+<ul>
+<li class="fragment">Predict the price of a 400 sq. ft. house
+<ul>
+<li class="fragment">$2000?</li>
+</ul></li>
+</ul></li>
+<li class="fragment"><p>Let’s say that we have the following data:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"> <span class="op">$</span><span class="dv">2000</span>, <span class="dv">400</span> sq. ft.</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"> <span class="op">$</span><span class="dv">3000</span>, <span class="dv">400</span> sq. ft.</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"> <span class="op">$</span><span class="dv">8000</span>, <span class="dv">600</span> sq. ft.</a></code></pre></div>
+<ul>
+<li class="fragment">Predict the price of a 400 sq. ft. house
+<ul>
+<li class="fragment">$2500?</li>
+</ul></li>
+</ul></li>
 </ul>
-</section></section>
-<section><section id="estimating-functions" class="title-slide slide level1"><h1>Estimating Functions</h1></section><section id="functional-estimation" class="slide level2">
+</section><section id="functional-estimation" class="slide level2">
 <h2>Functional Estimation</h2>
 <ul>
-<li class="fragment"><p>Functions map each <span class="math inline">\(x\)</span> to one <span class="math inline">\(y\)</span></p></li>
-<li class="fragment">But with data with generally have two issues:
+<li class="fragment">What is a function?
 <ul>
-<li class="fragment">multiple <span class="math inline">\(y\)</span>s with the same <span class="math inline">\(x\)</span></li>
-<li class="fragment"><span class="math inline">\(y\)</span> in sparse corners—no close neighbors</li>
+<li class="fragment">For each <span class="math inline">\(x\)</span> there is just one <span class="math inline">\(y\)</span></li>
 </ul></li>
-<li class="fragment"><p>Most of ML <span class="math inline">\(\sim\)</span> Functional Estimation</p></li>
-<li class="fragment"><p><span class="math inline">\(y = f(x) + \epsilon\)</span></p></li>
-<li class="fragment"><p><span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span></p></li>
-<li class="fragment"><p><span class="math inline">\(\epsilon\)</span> also called the irreducible error</p></li>
-<li class="fragment"><p><span class="math inline">\(Cost = (y - \hat{f}(x))^2\)</span></p></li>
+<li class="fragment"><p>Same size but multiple prices</p></li>
+<li class="fragment">So how do you get one <span class="math inline">\(y\)</span> for one <span class="math inline">\(x\)</span>?
+<ul>
+<li class="fragment">One ans.: for the <span class="math inline">\(same\)</span> house size: predict the mean</li>
+<li class="fragment">Another = find a function that minimizes error</li>
+</ul></li>
+<li class="fragment"><p>Let’s say that we have the following data:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"> <span class="op">$</span><span class="dv">2000</span>, <span class="dv">350</span> sq. ft.</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"> <span class="op">$</span><span class="dv">3000</span>, <span class="dv">450</span> sq. ft.</a></code></pre></div>
+<ul>
+<li class="fragment">Predict the price of a 400 sq. ft. house
+<ul>
+<li class="fragment">Linearly interpolate? <span class="math inline">\(y_{400} = .5*x_{350} + .5*x_{450}\)</span></li>
+<li class="fragment">Intuition = neighbors and smoothness</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="it-gets-weird" class="slide level2">
+<h2>It Gets Weird</h2>
+<ul>
+<li class="fragment"><p>Let’s say that we have the following data:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"> <span class="op">$</span><span class="dv">2000</span>, <span class="dv">350</span> sq. ft.</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"> <span class="op">$</span><span class="dv">2300</span>, <span class="dv">400</span> sq. ft.</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"> <span class="op">$</span><span class="dv">3000</span>, <span class="dv">450</span> sq. ft.</a></code></pre></div>
+<ul>
+<li class="fragment">Predict the price of a 400 sq. ft. house
+<ul>
+<li class="fragment">$2300?</li>
+<li class="fragment">If you use linear regression, you assume a linear relationship <span class="math inline">\(y = f(x) = a + b*x\)</span> and then predict based on the ‘best fitting’ line.
+<ul>
+<li class="fragment">Line that minimizes squared errors in <span class="math inline">\(y\)</span>: <span class="math inline">\((y - \hat{y})^2\)</span></li>
+</ul></li>
+</ul></li>
+<li class="fragment">What if you add another point that’s way out: <code>$8000, 600 sq. ft.</code>?
+<ul>
+<li class="fragment">Squared errors mean that our prediction would be very different from $2300</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="good-function" class="slide level2">
+<h2>Good Function?</h2>
+<ul>
+<li class="fragment">Check if linearity is a good assumption
+<ul>
+<li class="fragment">Does it fit the data well?</li>
+<li class="fragment">Are the errors huge?</li>
+<li class="fragment">Are the errors huge in one place and small in other places?</li>
+</ul></li>
+<li class="fragment">More generally
+<ul>
+<li class="fragment"><span class="math inline">\(y = f(x) + \epsilon\)</span></li>
+<li class="fragment"><span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span></li>
+<li class="fragment"><span class="math inline">\(\epsilon\)</span> also called the irreducible error</li>
+<li class="fragment"><span class="math inline">\(Cost = (y - \hat{f}(x))^2\)</span></li>
+<li class="fragment">Minimize cost</li>
+</ul></li>
 </ul>
 </section></section>
 <section><section id="cost" class="title-slide slide level1"><h1>Cost</h1></section><section id="the-cost-of-everything" class="slide level2">
@@ -1809,7 +1933,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section><section id="the-cost-is-too-damn-high" class="title-slide slide level1"><h1>The Cost is Too Damn High!</h1></section><section id="when-the-slope-is-0" class="slide level2">
 <h2>When the Slope is 0</h2>
 <ul>
-<li class="fragment"><p>If the costs function is quadratic, set first derivative to 0</p></li>
+<li class="fragment"><p>If the cost function is quadratic, set first derivative to 0</p></li>
 <li class="fragment"><p>Linear regression:<br> <span class="math inline">\(\hat{y} = \alpha + \beta * x\)</span><br> <span class="math inline">\(\hat{y} = \hat{f}(\alpha + \beta * x)\)</span></p></li>
 <li class="fragment"><p>Cost as a function to two parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span></p></li>
 <li class="fragment"><p>Cost:<br> <span class="math inline">\(J = \frac{1}{m} \Sigma_i (y_i - \hat{y_i})^2\)</span></p></li>
@@ -1839,6 +1963,16 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment"><p>Stop updating when reduction in cost is below a certain threshold</p></li>
 <li class="fragment"><p>Stop when test error starts going up</p></li>
 <li class="fragment"><p>Gradient update:<br> <span class="math inline">\(b = b - \alpha * \frac{\partial J}{\partial b}\)</span></p></li>
+</ul>
+</section><section id="dl-with-log-loss" class="slide level2">
+<h2>101 DL with Log Loss</h2>
+<ul>
+<li class="fragment"><p><span class="math inline">\(z = w^{t}*x + b\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(a = \sigma(z)\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(y*log(a) - (1 - y)*log(1 - a)\)</span></p></li>
+<li class="fragment"><p>Chain Rule: <span class="math inline">\(\frac{\partial J}{\partial a} = \frac{\partial J}{\partial k} \frac{\partial k}{\partial a}\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(\frac{\partial J}{\partial a} = -\frac{y}{a} \frac{1 - y}{1 - a}\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(\frac{\partial a}{\partial z} = -\frac{y}{a} \frac{1 - y}{1 - a}\)</span></p></li>
 </ul>
 </section></section>
     </div>
