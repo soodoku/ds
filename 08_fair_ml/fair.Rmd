@@ -88,6 +88,8 @@ output:
 * Anti-classification
   - Do not use 'sensitive' data (group information)
 
+* Calibration
+
 * Classification Parity
   * via constrained optimization
     - constraint: group error rates are the same
