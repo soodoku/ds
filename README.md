@@ -33,6 +33,11 @@
     - Concerns
     - Solutions
 
+* [Interpretable ML](09_interpretable_ml/)
+    - Why?
+    - How?
+    - Concerns
+
 ### Author
 
 Gaurav Sood

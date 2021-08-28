@@ -66,8 +66,7 @@ output:
 
 ## Cubic Spline Smoothing
 
-* Spline = A $k$th order spline is a piecewise polynomial function of degree $k$, that is continuous
-and has continuous derivatives of orders $1, . . . k − 1$, at its knot points
+* Spline = A $k$th order spline is a piecewise polynomial function of degree $k$, that is continuous and has continuous derivatives of orders $1, . . . k − 1$, at its knot points
 
 * Second derivative = curvature
   - Integrate over the second derivative (squared)
