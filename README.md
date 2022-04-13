@@ -38,6 +38,11 @@
     - How?
     - Concerns
 
+* [Problem Solving With Data](10_psd/)
+    - Why?
+    - How?
+    - Concerns
+
 ### Author
 
 Gaurav Sood
