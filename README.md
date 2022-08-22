@@ -43,6 +43,10 @@
     - How?
     - Concerns
 
+* [Model Testing](11_model_testing/)
+    - Why cross-validation isn't enough
+    - Lessons from SWE
+
 ### Author
 
 Gaurav Sood
