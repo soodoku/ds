@@ -21,6 +21,7 @@
 * Lessons from Software Testing
 
 	* Get product requirements and write tests/metrics around each
+		- e.g., fairness
 
 	* Unit tests
 		- isolate a capability that is to be tested
