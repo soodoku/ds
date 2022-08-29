@@ -11,14 +11,19 @@
 	
 	- expected behavior not explicitly captured
 		+ robust to "small" changes in input
+			* also used because we don't have an oracle
+			* self-driving: weather and steering wheel angle
 		+ robust to "noise"
 		+ response to invalid inputs
 
 	- common problems with ML models
 		+ learn a shallow representation
 		+ predictions far from data
-
+		+ feedback loops
+	
 * Lessons from Software Testing
+
+	* Offline testing vs. testing using the serving API (and infra.)
 
 	* Get product requirements and write tests/metrics around each
 		- e.g., fairness
@@ -57,12 +62,27 @@
 		+ Invariance to 'small' changes
 			* Slight changes in resolution/contrast/etc.
 
+* Example: self-driving
+	- Expectations
+		+ handling tail risk: simulation of edge cases
+
+* State of the world
+	* https://twitter.com/FeiziSoheil/status/1562476170117267459
+
 * Testing ML Code
+	- Deeper assertions for code quality: specific subcomputations of the algorithm are correct, e.g. that a specific part of an RNN was executed exactly once per element of the input sequence.
+	- Loss decreases with training
+	- Overfit --- if a model can memorize training data, things are working well	
 	- Data Flowing Testing
 		+ where variables receive values and points at which these values are used.
 		+ A variable that is defined but never used (referenced)
 		+ A variable that is used before it is defined
 		+ A variable that is defined twice before it is used
+	- Coverage-Guided Fuzzing: https://arxiv.org/pdf/1807.10875.pdf
+		- choose recent inputs
+		- mutate: for image add white noise, randomly delete/add/substitute characters for text
+		- coverage: if nn is a new state
+		- It is better to detect whether an activation vector is close to one that was observed previously. 
 
 * Test Plan
 	- Identify risks
@@ -81,6 +101,16 @@
 	+ 500/400 errors
 	+ Latency
 	+ Stress test against volume spikes
+
+* Privacy
+	* Storing POST requests
+	* https://cloud.google.com/speech-to-text/pricing
+	
+* Prevention strategy
+	* OS same as serving OS (Google)
+
+* Poor man's solution
+	* 
 
 ### References
 
