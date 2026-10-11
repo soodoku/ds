@@ -1,0 +1,58 @@
+---
+title: "what data to collect?"
+author: gaurav sood
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    incremental: true
+    transition: slide
+    highlight: haddock
+    center: true
+    fig_width: 5
+    fig_height: 4
+    css: ../slides.css
+    reveal_options:
+      width: 1280
+      height: 960
+    fig_caption: true
+---
+
+## What Data To Collect?
+
+* Start of the project:
+  - Aim = MVP that produces value
+  - Easy to classify cases
+    - High precision and low recall
+  - Random sample and then deploy a high precision threshold
+
+* Improving ML
+  * Which point gives me the highest ROI?
+  * Let's assume same cost which reduces to highest returns
+  * Returns could be = largest reductions in RMSE
+  * High influence is one possible heuristic; it does not guarantee the largest reduction in future error
+  * Experimentally find them or figure out from data
+  * Other heuristics:
+    - points with the largest error
+      * Can help you discover incorrect labels
+    - points with the largest uncertainty, balanced against coverage of the target population
+
+## How to Collect the Data
+
+* From points to kinds of points
+  - Say we discover $x_1, x_2, x_3, ...$
+  - We now need to abstract out the type
+  - Type means clarifying what X is not and what X is
+    + What is the diff. with the rest of the data
+    + Clustering
+
+## Other Hacks
+
+* Self-training
+  - Train the model on the labeled data.
+  - Have the model label the unlabeled data.
+  - Take some of the examples the model is most confident about (i.e., the model gives them high probability). Add selected examples with their predicted labels to the training set; monitor on independently labeled validation data because confident mistakes can reinforce themselves
+
+* Multi-view training
+  - Train k models using k representations of data
+    + Example: classifying webpages using images or text
+  - Use confident predictions from one view to label examples for another. Different views must provide useful complementary information; agreement alone does not establish correctness.

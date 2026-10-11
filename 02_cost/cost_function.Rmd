@@ -1,0 +1,150 @@
+---
+title: "cost"
+author: gaurav sood
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    incremental: true
+    transition: slide
+    highlight: haddock
+    center: true
+    fig_width: 5
+    fig_height: 4
+    css: ../slides.css
+    reveal_options:
+      width: 1280
+      height: 960
+    fig_caption: true
+---
+
+# Estimating Functions
+
+## House Size and Price
+
+| Price | Area (sq. ft.) |
+|-------|----------------|
+| $2000 | 400 |
+| $8000 | 600 |
+
+* Predict the price of a 400 sq. ft. house: $2000?
+* Now add another 400 sq. ft. house priced at $3000.
+* Predict the mean price for that size: $2500?
+
+## Functional Estimation
+
+* A function assigns one value to each input $x$.
+* Houses of the same size can have different prices.
+* One prediction rule: use the mean price at that size.
+* Another: fit a smooth function to the data.
+
+| Price | Area (sq. ft.) |
+|-------|----------------|
+| $2000 | 350 |
+| $3000 | 450 |
+
+* Linear interpolation at 400 sq. ft.: $\hat y_{400}=.5y_{350}+.5y_{450}=2500$.
+
+## It Gets Weird
+
+| Price | Area (sq. ft.) |
+|-------|----------------|
+| $2000 | 350 |
+| $2300 | 400 |
+| $3000 | 450 |
+
+* Predict the price of a 400 sq. ft. house: $2300?
+* A linear regression fits $\hat y=a+bx$ by minimizing the sum of squared errors in $y$.
+* Its prediction need not equal the observed price at $x=400$.
+* Adding an $8000, 600 sq. ft. house changes the fitted line and its predictions.
+
+## Good Function?
+
+* Check if linearity is a good assumption
+  - Does it fit the data well?
+  - Are the errors huge?
+  - Are the errors huge in one place and small in other places?
+
+* More generally
+  * $y = f(x) + \epsilon$
+  * Take $f(x)=E[Y\mid X=x]$, so $E[\epsilon\mid X]=0$.
+  * Gaussian, constant-variance errors are an additional assumption, not a requirement for squared-error prediction.
+  * $\epsilon$ is the residual noise; $\operatorname{Var}(Y\mid X=x)$ is the irreducible squared-error risk at $x$
+  * $Cost  = (y - \hat{f}(x))^2$
+  * Minimize cost
+
+# Cost
+
+## The Cost of Everything
+
+* Here, loss = one example
+* Here, cost = average loss over the training examples (terminology varies)
+* Let's assume we have $m$ training examples
+* MSE:<br>
+  $\frac{1}{m} \Sigma_i (y_i - \hat{y_i})^2$
+* Log Loss:<br>
+  $-\frac{1}{m}\sum_{i=1}^m [y_i\log p_i+(1-y_i)\log(1-p_i)]$, with $y_i\in\{0,1\}$ and $0<p_i<1$
+
+# The Cost is Too Damn High!
+
+## When the Slope is 0
+
+* For a differentiable convex quadratic, solve the zero-gradient equations for a minimum
+
+* Linear regression:<br>
+	$\hat{y} = \alpha + \beta * x$<br>
+	$\hat{f}(x) = \alpha + \beta x$
+
+* Cost as a function of two parameters $\alpha$ and $\beta$
+
+* Cost:<br>
+  $J = \frac{1}{m} \Sigma_i (y_i - \hat{y_i})^2$
+
+* $\frac{\partial J}{\partial \alpha} = -\frac{2}{m} \Sigma_i (y_i - \alpha - \beta*x_i) = 0$
+
+* $m*\alpha = \Sigma_i y_i - \beta \Sigma_i x_i$
+
+* $\alpha = \bar{y} - \beta \bar{x}$
+
+## $\beta$
+
+* $\frac{\partial J}{\partial\beta}=-\frac{2}{m}\sum_i x_i(y_i-\alpha-\beta x_i)=0$
+* Substitute $\alpha=\bar y-\beta\bar x$:
+  $\sum_i x_i(y_i-\bar y)=\beta\sum_i x_i(x_i-\bar x)$
+* Because centered deviations sum to zero:
+  $\hat\beta=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sum_i(x_i-\bar x)^2}=\frac{\operatorname{Cov}(X,Y)}{\operatorname{Var}(X)}$
+* The denominator must be positive.
+* With several predictors and a full-column-rank design matrix (including an intercept):
+  $\hat{\boldsymbol\beta}=(X^\top X)^{-1}X^\top y$.
+* In software, use a least-squares solver rather than explicitly inverting $X^\top X$.
+
+## When Change in Costs is *small* or ...
+
+* Iterative optimization when closed-form solutions are unavailable or expensive
+
+* Gradient descent is the most popular:
+
+* $w = w - \alpha * \frac{\partial J}{\partial w}$<br>
+  where $\alpha$ is the learning rate
+
+* Stop updating when reduction in cost is below a certain threshold
+
+* Choose early stopping using validation error; reserve the test set for final evaluation
+
+* Gradient update:<br>
+  $b = b - \alpha * \frac{\partial J}{\partial b}$
+
+## Logistic regression with log loss
+
+* $z=w^\top x+b$, $a=\sigma(z)=1/(1+e^{-z})$.
+* For one binary outcome: $\ell=-[y\log a+(1-y)\log(1-a)]$.
+* $\frac{\partial\ell}{\partial a}=-\frac{y}{a}+\frac{1-y}{1-a}$.
+* $\frac{\partial a}{\partial z}=a(1-a)$.
+* By the chain rule:
+  $\frac{\partial\ell}{\partial z}=\frac{\partial\ell}{\partial a}\frac{\partial a}{\partial z}=a-y$.
+* Therefore $\nabla_w\ell=(a-y)x$ and $\partial\ell/\partial b=a-y$.
+* Average these gradients over the examples for mean log loss.
+
+## References
+
+* [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/), chapters 2 and 4.
+* [R: fitting linear models](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html).

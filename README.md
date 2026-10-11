@@ -1,0 +1,68 @@
+## Learning From Data
+
+* [Basics of Data Science](01_stat/)
+    - When is the *mean* useful?
+    - Correlation---intuition and problems
+
+* [Cost](02_cost/)
+    - Functional Estimation as Cost Minimization
+    - What's the cost?
+    - How to minimize costs
+    - Derivation of simple linear regression
+
+* [Error, Bias, Variance](03_bias_variance/)
+    - Decomposing Error in Bias, Variance, Irreducible Error
+    - Practical Trade-offs between Bias and Variance
+    - Regularization, Dropout, etc.
+
+* [Evaluating Models](04_eval/)
+    - Metrics for evaluating models
+    - Clearing up confusion about confusion matrices
+    - How to construct your test data
+
+* [What Data to Collect?](05_what_data_to_collect/)
+    - Active learning
+    - Generating types
+
+* [Causal Inference](06_causal_inf/)
+    - Causal Inference
+    - Experimental Inference
+    - Power
+
+* [Computer Vision](07_cv/)
+    - Detection, segmentation, and evaluation
+
+* [Fair ML](08_fair_ml/)
+    - Concerns
+    - Solutions
+
+* [Interpretable ML](09_interpretable_ml/)
+    - Why?
+    - How?
+    - Concerns
+
+* [Problem Solving With Data](10_psd/)
+    - Why?
+    - How?
+    - Concerns
+
+* [Model Testing](11_model_testing/)
+    - Why cross-validation isn't enough
+    - Lessons from SWE
+
+### Author
+
+Gaurav Sood
+
+### Build and check
+
+Install R, Pandoc, and the R packages `rmarkdown`, `revealjs`, and `knitr`:
+
+```r
+install.packages(c("rmarkdown", "revealjs", "knitr"))
+```
+
+Run `make check` to verify the numerical identities and execute every R lesson
+chunk. Run `make slides` to regenerate the HTML presentations and the Markdown
+copy of the first lesson from the R Markdown sources. Open an HTML file in a
+browser to present it; equations use MathJax and need an internet connection.

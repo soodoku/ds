@@ -1,0 +1,44 @@
+day time Fahrenheit 
+
+temperature: [0, 100]
+	- 40
+	- 40.1
+	- 41
+
+
+temperature*humidity
+
+
+- random samples <- completely legit
+
+ceteris paribus
+
+bike_rentals, temperature, [..., ....] <- x_c
+               40.1, 50, 70 -> pred
+               40.1, 53, 25 -> pred
+               40.1, 25, 
+               40.1
+               40.1
+               --------------------
+               					average_pred 
+               					one pt. on the curve where temp = 40.1
+
+
+
+
+bivariate plot + loess (with some smoothing) <- 
+
+
+regularization: where collinear features
+	-> l1: 
+	-> l2: high value of lambda: 
+
+* long_covid ~ x_1 (age) and x_2 (health) are correlated
+	* x_1 is permuted and you infer FI of x_2
+		- health 1.5
+		- age 1.4
+
+	* are any of these columns really expensive to collect
+		* price we have pay in terms reduced accuracy 
+
+	* 

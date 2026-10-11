@@ -1,0 +1,17 @@
+.reveal .slides {
+  text-align: left;
+  font-size: 28px;
+  line-height: 1.3;
+}
+.reveal h1 { font-size: 1.8em; }
+.reveal h2 { font-size: 1.45em; }
+.reveal pre { width: 100%; margin-left: 0; font-size: 0.72em; }
+.reveal pre code {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  max-height: none;
+}
+.reveal section img { border: 0; max-height: 580px; object-fit: contain; }
+.reveal table { font-size: 0.8em; }
+.reveal li { margin-bottom: 0.2em; }
+.reveal .slides section > * { margin-left: 0; margin-right: 0; }

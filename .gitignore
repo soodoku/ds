@@ -1,0 +1,11 @@
+.DS_Store
+notes.txt
+*/lit/
+ds_notes.md
+
+build/
+.Rhistory
+.RData
+*.knit.md
+*.utf8.md
+*_files/

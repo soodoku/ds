@@ -1,0 +1,238 @@
+---
+title: "causal inference"
+author: gaurav sood
+date: March 10, 2020
+output:
+  revealjs::revealjs_presentation:
+    theme: simple
+    incremental: true
+    transition: slide
+    highlight: haddock
+    center: true
+    fig_width: 5
+    fig_height: 4
+    css: ../slides.css
+    reveal_options:
+      width: 1280
+      height: 960
+    fig_caption: true
+---
+
+# causal inference
+
+## Casual Inference
+
+* More frequent system crashes *cause* people to renew their software license.
+
+* Five Habits of Successful People
+  - Adopt these and you will be successful too!
+
+* Mayor Giuliani brought the NYC crime rate down.
+
+* I took this homeopathic medication and my headache went away.
+
+## Sins
+
+* Mistaking correlation for causation
+  - Specify the intervention and the causal contrast
+
+* Selecting on the dependent variable
+  - Even correlation is not guaranteed!
+  - Survivorship bias!
+
+* Forgetting about ecological trends
+
+* Treating temporally proximate events as causal
+
+* Not accounting for placebo effects
+
+* In everyday conversation, people frequently make **four** other errors:
+  - $x$ always causes $y$
+  - $x$ causes $y$ to change a lot
+  - $x$ is the **only** cause of $y$
+  - the effect is the same across people
+
+# Randomized Inference
+
+## Limits of Observational Inference
+
+* We can `control` for things but:
+  - Omitted variables
+  - Endogenous variables
+  - Incorrect functional form
+  - Heterogeneous treatment effects
+
+## How to infer consequences of manipulations?
+
+* "No causation without manipulation" is Holland's (1986) framing: define the intervention whose effect you seek
+  - An observed exposure difference alone does not identify that effect.
+  - Exploit luck or manufacture luck (intervene)
+  - Prediction is predicting $Y$ after *observing* $X = x$.
+  - Causation is predicting $Y$ after *setting* $X = x$.
+
+## The Fundamental Problem of Causation
+
+* | i | D    | $Y_0$ | $Y_1$ |
+  |---|------|-------|-------|
+  | 1 | 1    |   *   |  1    |
+  | 2 | 1    |   *   |  0    |
+  | 3 | 1    |   *   |  1    |
+  | 4 | 0    |   1   |  *    |
+  | 5 | 0    |   1   |  *    |
+  | 6 | 0    |   0   |  *    |
+
+## Comparing Groups
+
+  - $E[Y_i| D_i = 1] - E[Y_i|D_i = 0]$
+  - $E[Y_i(1)| D_i = 1] - E[Y_i(0)|D_i = 0]$
+  - $E[Y_i(1)| D_i = 1] - E[Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - $E[Y_i(1) - Y_i(0)| D_i = 1] + E[Y_i(0)|D_i = 1] - E[Y_i(0)| D_i = 0]$
+  - Naive = ATT + Selection Bias
+
+## What random assignment does
+
+* For simple random assignment with treatment probability $0<P(D=1)<1$:
+  $D\perp (Y(0),Y(1))$.
+* Therefore, for each $d\in\{0,1\}$:
+  $E[Y(d)\mid D=1]=E[Y(d)\mid D=0]=E[Y(d)]$.
+* With consistency and well-defined treatments and no interference:
+  $$E[Y\mid D=1]-E[Y\mid D=0]=E[Y(1)]-E[Y(0)].$$
+* SUTVA includes no interference and no relevant hidden versions of treatment; randomization does not ensure these assumptions.
+* Finite samples can be imbalanced by chance. The difference in means is unbiased over the randomization, not exactly equal to the effect in every realized sample.
+* With noncompliance, assignment identifies the intention-to-treat effect; treatment receipt requires further assumptions.
+
+## Common Errors in Experiment Design
+
+1. Optimistic Estimates of Effect Sizes
+
+2. Bundling Treatments
+
+3. Not Having a Strategy for Compliance
+
+4. Interference
+    - Learning
+    - Self-selection
+
+5. Implementation Failures
+    - A/A tests
+    - Expected n
+
+6. Inadequate instrumentation
+    - For CTR, we want: delivered, opened, clicked
+
+7. Not measuring both the good and the bad
+
+# Power
+
+## Standard error and hypothesis tests
+
+* For $n$ independent Bernoulli observations:
+  $\operatorname{SE}(\hat p)=\sqrt{p(1-p)/n}$, estimated by substituting $\hat p$.
+* For fixed $n$, this standard error is largest at $p=.5$.
+* A worst-case standard error no larger than $s$ requires $n\geq 1/(4s^2)$.
+* For a normal-approximation two-sided 95% margin of error $m$, use $n\geq 1.96^2/(4m^2)$ instead.
+
+| Decision | $H_0$ true | $H_0$ false |
+|---|---|---|
+| Reject $H_0$ | Type I error, $\alpha$ | Power, $1-\beta$ |
+| Do not reject $H_0$ | Correct | Type II error, $\beta$ |
+
+* Power is the probability of rejecting the null under a specified alternative.
+
+## Difference in proportions
+
+* Let $X$ and $Y$ be successes in independent groups of sizes $n_1,n_2$.
+* $\hat p_1=X/n_1$, $\hat p_2=Y/n_2$; the estimated difference is $\hat p_1-\hat p_2$.
+* Unpooled estimated standard error:
+  $$\widehat{SE}=\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}.$$
+* Under $H_0:p_1=p_2$, a pooled test uses $\hat p=(X+Y)/(n_1+n_2)$ and
+  $$z=\frac{\hat p_1-\hat p_2}{\sqrt{\hat p(1-\hat p)(1/n_1+1/n_2)}}.$$
+* The ratio is a test statistic, not a standard error.
+
+## Intervals and small counts
+
+* Wald intervals can perform poorly near 0 or 1 and with small counts.
+* Agresti--Caffo adds one success and one failure to **each** group:
+  $\tilde n_j=n_j+2$, $\tilde p_1=(X+1)/(n_1+2)$, $\tilde p_2=(Y+1)/(n_2+2)$.
+* Form the interval for $\tilde p_1-\tilde p_2$ with the unpooled standard error using these adjusted quantities.
+* This is an approximation; the design and sample sizes determine which interval or exact test is appropriate.
+
+## I have the power!
+
+* A common planning target is $1-\beta=.8$ with $\alpha=.05$.
+* Suppose an email reaches 99% of assigned recipients; 5% open it, 70% of those read it, and 10% of readers convert.
+* Under this funnel, the conversion probability is $.99\times.05\times.70\times.10=.003465$, or **0.3465%**.
+* This is a conversion rate, not a treatment effect. Subtract the control group's conversion rate to obtain the effect.
+* Choose the minimum effect worth detecting before calculating sample size; do not round it upward just to make the study smaller.
+
+## Power and sample size in R
+
+For independent, equally sized groups, detecting a change from 5% to 5.5%:
+
+```{r power-sizing}
+power_plan <- power.prop.test(
+  p1 = .05, p2 = .055, sig.level = .05,
+  power = .8, alternative = "two.sided", strict = TRUE
+)
+n_per_group <- ceiling(power_plan$n)
+n_per_group
+power.prop.test(n = n_per_group, p1 = .05, p2 = .055,
+                sig.level = .05, strict = TRUE)$power
+```
+
+The returned $n$ is **per group**. This is a normal approximation; clustered designs, attrition, or very rare outcomes need additional planning.
+
+## Quantiles and rejection regions
+
+The binomial quantile $q$ is the smallest integer with $P(X\leq q)\geq p$. That boundary need not be a level-$p$ rejection region.
+
+```{r binomial-tail}
+q <- qbinom(p = .05, size = 100, prob = .3)
+c(boundary = q, reject_through_q = pbinom(q, 100, .3),
+  reject_below_q = pbinom(q - 1, 100, .3))
+```
+
+For this lower-tail test, reject only below $q$ to keep the null rejection probability at most .05. Discreteness makes the test conservative.
+
+## Other designs
+
+1. Active comparison groups <br />
+   Randomly assign bananas to A and apples to B to estimate the effect of bananas **relative to apples**. Neither arm is a no-treatment counterfactual without further assumptions.
+
+2. Sequential designs with prespecified stopping rules; repeatedly checking ordinary p-values and stopping at significance inflates Type I error.
+
+# Opportunities and Issues
+
+## Data Generating Process
+  * SUTVA
+
+## Decision Making:
+  * Quantiles
+    - [Netflix](https://medium.com/netflix-techblog/streaming-video-experimentation-at-netflix-visualizing-practical-and-statistical-significance-7117420f4e9a)
+  * Bayesian
+  * Trade-offs
+  * Multiple Comparisons:
+    - Bonferroni: with $m$ hypotheses, reject an individual null when its valid p-value is at most $\alpha/m$.
+    - The union bound controls the probability of any false rejection at $\alpha$; independence is **not** required.
+    - [WB](http://blogs.worldbank.org/impactevaluations/tools-of-the-trade-a-quick-adjustment-for-multiple-hypothesis-testing)
+
+## Efficient Experimentation:
+  * $k$-arm bandits
+  * Optimal Stopping
+
+## Observational Inference:
+  * DID
+  * IV
+  * Double ML
+
+## Why experiments matter
+
+* In the Cardiac Arrhythmia Suppression Trial, encainide and flecainide suppressed ventricular arrhythmias but increased mortality. Improving a surrogate outcome need not improve survival.
+* The Women's Health Initiative randomized trials illustrate why observational associations and intervention effects may differ; effects depend on the regimen and population.
+
+## References
+
+* [R: power.prop.test](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/power.prop.test.html).
+* [R: multiple-testing adjustments](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
+* [Hernán and Robins, Causal Inference: What If](https://miguelhernan.org/whatifbook).
+* [CAST preliminary report (1989)](https://doi.org/10.1056/NEJM198908103210629).
